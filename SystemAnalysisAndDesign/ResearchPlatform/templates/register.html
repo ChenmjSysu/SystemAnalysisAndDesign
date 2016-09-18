@@ -1,49 +1,44 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'part/base.html' %}
 
-    <title>注册</title>
-    <link rel='icon' href='../static/images/logo.jpg' type='image/x-ico' /> 
-		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+{% block head %}
+  <link href="../static/css/login.css" rel="stylesheet">
+  <script type="text/javascript" src='../static/js/register.js'></script>
+{% endblock %}
 
-		<link href="../static/css/login.css" rel="stylesheet">
-		
-  </head>
-  <body>
-    {%  include 'header.html' %}
-  	<div id='container'>
-  		<div class='content'>
-  			<img class='logo' src="">
-  			<div class='inputs'>
-  				<div class='inputli'>
-  					<div class='input_desc'>注册邮箱</div>
-  					<input type='email' class='input_val' name='name'>
-  				</div>
-  				<div class='inputli'>
-  					<div class='input_desc'>密码</div>
-  					<input type='password' class='input_val' name='password'>
-  				</div>
+ 
+{% block title %}注册{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+      <div class='content'>
+        <img class='logo' src="">
+        <div class='inputs'>
           <div class='inputli'>
-            <div class='input_desc'>密码</div>
+            <div class='input_desc long'>注册邮箱</div>
+            <input type='email' class='input_val' name='name'>
+          </div>
+          <div class='inputli'>
+            <div class='input_desc long'>密码</div>
+            <input type='password' class='input_val' name='password'>
+          </div>
+          <div class='inputli'>
+            <div class='input_desc long'>密码</div>
             <input type='password' class='input_val'>
           </div>
           <div class='inputli'>
-            <div class='input_desc'>用户类型</div>
-            <select name='type'>
+            <div class='input_desc long'>用户类型</div>
+            <select name='type' class='input_val'>
               <option>匿名用户</option>
               <option>实验室用户</option>
             </select>
           </div>
-  			</div>
-  			<div class='btns'>
-  				<div class='btn back'>上一页</div>
-  				<div class='btn confirm'>注册</div>
-  			</div>
-  		</div>
-  	</div>
-  </body>
-</html>
+        </div>
+        <div class='btns'>
+          <div class='btn back'>上一页</div>
+          <div class='btn confirm'>注册</div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
