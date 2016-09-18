@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel='icon' href='../static/images/logo.jpg' type='image/x-ico' /> 
+  <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+  <link href="../static/css/login.css" rel="stylesheet">
+
+{% endblock %}
+
+ 
+{% block title %}登录{% endblock %}
+
+{% block content %}
+    <div id='container'>
+      <div class='content'>
+        <img class='logo' src="">
+        <div class='inputs'>
+          <div class='inputli'>
+            <div class='input_desc'>账号</div>
+            <input type='email' class='input_val' placeholder='一般为邮箱' name='name'>
+          </div>
+          <div class='inputli'>
+            <div class='input_desc'>密码</div>
+            <input type='password' class='input_val' name='password'>
+          </div>
+        </div>
+        <div class='btns'>
+          <div class='btn back'>上一页</div>
+          <div class='btn confirm'>登录</div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+<!-- <!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>登录</title>
+    <link rel='icon' href='../static/images/logo.jpg' type='image/x-ico' /> 
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+		<link href="../static/css/login.css" rel="stylesheet">
+		
+  </head>
+  <body>
+  	<div id='container'>
+  		<div class='content'>
+  			<img class='logo' src="">
+  			<div class='inputs'>
+  				<div class='inputli'>
+  					<div class='input_desc'>账号</div>
+  					<input type='email' class='input_val' placeholder='一般为邮箱' name='name'>
+  				</div>
+  				<div class='inputli'>
+  					<div class='input_desc'>密码</div>
+  					<input type='password' class='input_val' name='password'>
+  				</div>
+  			</div>
+  			<div class='btns'>
+  				<div class='btn back'>上一页</div>
+  				<div class='btn confirm'>登录</div>
+  			</div>
+  		</div>
+  	</div>
+  </body>
+</html> -->

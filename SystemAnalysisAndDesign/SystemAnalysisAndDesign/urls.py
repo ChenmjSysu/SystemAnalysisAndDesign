@@ -18,5 +18,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns("ResearchPlatform.views",
-	url(r'^index/$', TemplateView.as_view(template_name="test.html")),
+	url(r'^index/$', TemplateView.as_view(template_name="index.html")),
+	url(r'^login/$', TemplateView.as_view(template_name="login.html")),
+	url(r'^register/$', TemplateView.as_view(template_name="register.html"))
 	)
