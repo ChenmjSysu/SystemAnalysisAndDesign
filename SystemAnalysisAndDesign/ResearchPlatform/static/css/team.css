@@ -4,7 +4,7 @@
     text-align: center;
 }
 #container_left{
-    height: 600px;
+    min-height: 600px;
     width: 200px;
     display: inline-block;
     border: solid 1px #218868;
@@ -19,6 +19,12 @@
 	vertical-align: top;
 	padding:10px 20px 40px 20px;
 	margin-left: 30px;
+}
+.container_right{
+    display:none;
+}
+.container_right:first-child{
+    display:block;
 }
 #container_left .left_nav {
     border-top: solid 1px #218868;
@@ -64,6 +70,19 @@
     text-align: left;
     font-size: 14px;
     line-height: 30px;
+}
+.left_nav .nav_body>div{
+    cursor:pointer;
+}
+.left_nav .nav_li{
+    cursor:pointer;
+}
+.left_nav ul {
+    margin-top: 0;
+}
+.left_nav li {
+    list-style: none;
+    font-size: 14px;
 }
 
 

@@ -1,0 +1,39 @@
+#container{
+	width:1170px;
+	margin:30px auto;
+    text-align: center;
+    margin-top: 50px;
+}
+td.short{
+	width:200px;
+    border-top: dashed 1px #218868;
+	position:relative;
+	text-align: right;
+	line-height: 50px;
+    vertical-align: top;
+}
+td .circle{
+    width: 10px;
+    height: 10px;
+    border: solid 1px #218868;
+    border-radius: 10px;
+    display: block;
+    top: -6px;
+    left: 0;
+    position: absolute;
+    background: white;
+}
+td.long{
+	width:880px;
+	margin: 20px 0;
+	text-align: left;
+    vertical-align: top;
+    padding:0 20px;    
+    padding-bottom: 40px;
+}
+ol{
+	margin-top: 0;
+}
+li{
+	margin-bottom:20px;
+}
