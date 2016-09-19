@@ -1,0 +1,82 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="../static/css/about.css" rel="stylesheet">
+  <!-- <script type="text/javascript" src='../static/js/about.js'></script> -->
+{% endblock %}
+
+ 
+{% block title %}关于项目{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+    	<div id='container_left'>
+    		<div class='left_nav nav1'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>螺</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx" class='active'>福寿螺</a>
+    				<a href="">褐云玛瑙螺</a>
+    			</div>
+    		</div>
+    		<div class='left_nav nav2'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>蚊媒</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx">白纹伊蚊</a>
+    				<a href="">白纹伊蚊</a>
+    			</div>
+    		</div>
+    		<div class='left_nav nav3'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>病原体</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx">锥虫</a>
+    				<a href="">疟原虫</a>
+    				<a href="">血吸虫</a>
+    			</div>
+    		</div>
+    	</div>
+    	<div id='container_right'>
+    		<div class='part'>
+    			<div class='part_title'>基本信息介绍</div>
+    			<div class='part_content'>
+	    			<p>福寿螺，瓶螺科瓶螺属软体动物，外观与田螺极其相似，个体大、食性广、适应性强、生长繁殖快、产量高。食用未充分加热的福寿螺，可能引起广州管圆线虫等寄生虫在人体内感染。1981年引入中国，目前已被列入中国首批外来入侵物种</p>
+	    			<img src="http://www.qnong.com.cn/uploadfile/2014/1010/20141010022959502.jpg">
+	    			<p>其肉质可食用，但口感不佳，并不为人们喜爱。另外，它还是一些珍贵水产动物的饲料。福寿螺个体大、食性广、适应性强、生长繁殖快、产量高，中国各地均有养殖。食用未充分加热的福寿螺，可能引起广州管圆线虫等寄生虫在人体内感染。食用生的或加热不彻底的福寿螺后即可被感染，可引起头痛、发热、颈部僵硬等症状，严重者可致痴呆，甚至死亡。因此，食用福寿螺时一定要注意彻底加热。</p>
+	    		</div>
+    		</div>
+    		<div class='part'>
+    			<div class='part_title'>项目进展</div>
+    			<div class='part_content'>
+    				<p>此处仅展示简短的概要，并提供链接，可跳转至“项目进展”板块中该物种对应的项目进展详情</p>
+    			</div>
+    		</div>
+    		<div class='part'>
+    			<div class='part_title'>相关数据库</div>
+    			<div class='part_content'>
+    				<p>提供链接，可跳转至“数据/工具”板块中该物种对应的数据库</p>
+    			</div>
+    		</div>
+    		<div class='part'>
+    			<div class='part_title'>项目组发表文章</div>
+    			<div class='part_content'>
+    				<p>仅需提供链接，可直接跳转至该文章在外网上的页面，如pubmed网站等</p>
+    			</div>
+    		</div>
+    		<div class='part'>
+    			<div class='part_title'>相关文章</div>
+    			<div class='part_content'>
+    				<p>罗列该物种对应的相关文章，并提供链接，可直接跳转至该文章在外网上的详情页面</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+{% endblock %}

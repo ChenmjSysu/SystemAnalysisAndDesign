@@ -33,7 +33,7 @@ input,select{
 #header .chn-title{
     margin-bottom: 15px;
     font-size: 21px;
-    padding-top: 35px;
+    padding-top: 40px;
     line-height: 10px;
     margin-top: 0px;
     font-weight: 700;
@@ -45,11 +45,44 @@ input,select{
 #header .input-group.col-md-12 {
     position: absolute;
     width: 184px;
-    bottom: 28px;
+    bottom: 10px;
     right: 65px;
 }
 #header .col-md-9.eng-title {
     width: 666px;
+}
+#header .top_right {
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    width: 150px;
+}
+#header .username {
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0 10px;
+}
+#header .top_drop{
+    display:none;
+    overflow: hidden;
+    padding: 3px 0;
+    line-height: 35px;
+    background:#02270d;
+}
+#header .top_drop a {
+    display: block;
+    padding: 0 10px;
+}
+#header .top_drop a:hover{
+    background:#218868;
+}
+#header a.logoff_right {
+    margin-left: 10px;
+    font-size: 15px;
+}
+#header .header_op_li {
+    text-decoration: underline;
+    margin-right: 10px;
 }
 input.search-query.form-control {
     font-size: 14px;

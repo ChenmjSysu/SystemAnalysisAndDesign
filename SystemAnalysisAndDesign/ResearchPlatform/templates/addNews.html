@@ -1,0 +1,22 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+	<link href="../static/css/add.css" rel="stylesheet">
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="../static/js/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="../static/js/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src='../static/js/addNews.js'></script>
+{% endblock %}
+
+ 
+{% block title %}发布新闻{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <script id="ueditor" name="content" type="text/plain"></script>
+	<script type="text/javascript">
+        var ue = UE.getEditor('ueditor');
+    </script>
+{% endblock %}

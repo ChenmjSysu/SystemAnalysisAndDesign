@@ -1,0 +1,63 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="../static/css/progress.css" rel="stylesheet">
+  <!-- <script type="text/javascript" src='../static/js/about.js'></script> -->
+{% endblock %}
+
+ 
+{% block title %}项目进展{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+    	<div id='container_left'>
+    		<div class='left_nav nav1'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>螺</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx" class='active'>福寿螺</a>
+    				<a href="">褐云玛瑙螺</a>
+    			</div>
+    		</div>
+    		<div class='left_nav nav2'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>蚊媒</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx">白纹伊蚊</a>
+    				<a href="">白纹伊蚊</a>
+    			</div>
+    		</div>
+    		<div class='left_nav nav3'>
+    			<div class='nav_head'>
+    				<div class='icon'></div>
+    				<div class='nav_head_title'>病原体</div>
+    			</div>
+    			<div class='nav_body'>
+    				<a href="xx">锥虫</a>
+    				<a href="">疟原虫</a>
+    				<a href="">血吸虫</a>
+    			</div>
+    		</div>
+    	</div>
+    	<div id='container_right'>
+            <p>此板块的左侧边栏与“关于项目”板块的左侧边栏样式、内容完全一致。当点击某一物种的名称（即目录的二级标题）时，板块的右侧主体部分以文字、图片、链接等形式展示与该物种相关的项目进展</p>
+    		<div class='part'>
+    			<div class='part_title'>项目一</div>
+    			<div class='part_content'>
+                    <p>XXXXXXXXX</p>
+	    		</div>
+    		</div>
+            <div class='part'>
+                <div class='part_title'>项目二</div>
+                <div class='part_content'>
+                    <p>XXXXXXXXX</p>
+                </div>
+            </div>
+    	</div>
+    </div>
+{% endblock %}
