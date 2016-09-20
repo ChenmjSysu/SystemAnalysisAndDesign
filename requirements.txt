@@ -1,1 +1,2 @@
 Django==1.5.6
+DjangoUeditor==1.8.143
