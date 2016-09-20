@@ -1,3 +1,5 @@
+# coding: utf8
+
 # Django settings for SystemAnalysisAndDesign project.
 
 DEBUG = True
@@ -50,12 +52,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = 'media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -95,7 +97,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -125,6 +127,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     "ResearchPlatform",
+    "DjangoUeditor",
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -157,3 +160,27 @@ LOGGING = {
         },
     }
 }
+
+# UEDITOR_SETTINGS={
+#     "toolbars":{           #定义多个工具栏显示的按钮，允行定义多个
+#         "name1":[[ 'source', '|','bold', 'italic', 'underline']],
+#         "name2": [],
+#     },
+#     "serverUrl": "/ueditor/controller/?action=config",
+#     "images_upload":{
+#         "allow_type":"jpg,png",    #定义允许的上传的图片类型
+#         "path":"media",                   #定义默认的上传路径
+#         "max_size":"2222kb"        #定义允许上传的图片大小，0代表不限制
+#     },
+#     "files_upload":{
+#          "allow_type":"zip,rar",   #定义允许的上传的文件类型
+#          "path":"media",                   #定义默认的上传路径
+#          "max_size":"2222kb"       #定义允许上传的文件大小，0代表不限制
+#      },
+#     "image_manager":{
+#          "path":"media"         #图片管理器的位置,如果没有指定，默认跟图片路径上传一样
+#     },
+#     "scrawl_upload":{
+#         "path":"media"           #涂鸦图片默认的上传路径
+#     }
+# }

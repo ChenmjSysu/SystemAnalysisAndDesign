@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -26,5 +27,12 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^progress/$', TemplateView.as_view(template_name="progress.html")),
     url(r'^publishedArticles/$', TemplateView.as_view(template_name="publishedArticles.html")),
     url(r'^conference/$', TemplateView.as_view(template_name="conference.html")),
-    url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html"))
-	)
+    url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html")),
+    url(r'^test/$', "test"),
+    url(r'^form/$', "form"),
+)
+
+urlpatterns += patterns("",
+    url(r'^ueditor/', include('DjangoUeditor.urls' )),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
+)
