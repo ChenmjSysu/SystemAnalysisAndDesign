@@ -17,11 +17,20 @@ from django.core import serializers
 from django.contrib.auth.models import User  
 from forms import LoginForm, RegisterForm
 
+from models import *
+
+def hcy(request):
+	return HttpResponse("SB 黄蠢瑶")
+
+
+
+# A DjangoUeditor Demo
 def form(request):
 	# print request
 
 	return render_to_response("form.html", context_instance=RequestContext(request))
 
+# Login
 def login(request):
 	if request.method == "GET":
 		return render_to_response("login.html", RequestContext(request))
@@ -39,10 +48,12 @@ def login(request):
 				return render_to_response("login fail")
 		return render_to_response("login fail")
 
+# Logout
 def logout(request):
 	auth.logout(request)  
 	return HttpResponseRedirect('/')  
 
+# Register
 def register(request):
 	if request.method == "GET":
 		return render_to_response("register.html")
@@ -76,3 +87,94 @@ def register(request):
 		else:
 			errors.extend(RegisterForm.errors.values())
 		return render_to_response("register fail")
+
+# About the Projects
+def AboutProject(request):
+	biologicalCategory = BiologicalCategory.objects.all()
+
+# Team
+def Team(request):
+	team = Team.objects.all()
+
+# The Progress of projects
+def ProjectProgress(request):
+	biologicalCategory = BiologicalCategory.objects.all()
+
+# Get a list of notices/news
+def AnnouncementList(request, type):
+	announcements = Announcement.objects.filter(type = type).order_by("datetime")
+	count = announcements.count()	
+	countPerPage = int(request.GET.get("countPerPage", 10))
+	pageCount = count / countPerPage
+	if count % countPerPage != 0:
+		pageCount += 1
+	pid = request.GET.get("pid", 0)
+	announcements = announcement[pid * countPerPage : (pid + 1) * countPerPage]
+
+	return HttpResponse(announcements)
+
+# Get a notice/news according to ID
+def GetAnnouncement(request, type, id):
+	aid = int(id)
+	announcement = announcements.objects.filter(id = a_id).filter(type = type)
+	if len(announcement) > 0:
+		return HttpResponse(announcement)
+	else:
+		return HttpResponse("An error Id")
+
+# Add a notice/news
+def AddAnnouncement(request, type):
+	if request.user.is_authenticated():
+		if Permission.objects.get(type = request.user.type.type).write == False:
+			return HttpResponse("Permission Denied")
+		if request.method == "GET":
+			return HttpResponseRedirect("")			
+		else:
+			content = request.GET.get("content", None)
+			title = request.GET.get("title", None)
+			announcement = Announcement.objects.create(title = title, content = content, editor = request.user, type = type)
+			announcement.save()
+			if content is None or title is None:
+				return HttpResponse("content or title can not be null")
+			return HttpResponse("Submit ok")
+	else:
+		return HttpResponse("Login first")
+
+# Delete a notice/news according to Aid
+# Pass th Aid with name "aid"
+def DeleteAnnouncement(request, type):
+	if request.user.is_authenticated():
+		if not request.user.type == "super manager":
+			return HttpResponse("Permission Denied")
+		if request.method == "POST":
+			aid = request.POST.get("aid", None)
+			announcement = Announcement.objects.filter(id = int(aid))
+			if announcement.count() <= 0:
+				return HttpResponse("%s with id %s is not found" % (type, aid))
+			else:
+				announcement.delete()
+				return HttpResponse("Delete OK")	
+		else:
+			return HttpResponse("POST ONLY")
+	else:
+		return HttpResponse("Login first")
+
+# pass a notice/news according to Aid
+# Pass th Aid with name "aid"
+def PassAnnouncement(request, type):
+	if request.user.is_authenticated():
+		if not request.user.type == "super manager":
+			return HttpResponse("Permission Denied")
+		if request.method == "POST":
+			aid = request.POST.get("aid", None)
+			announcement = Announcement.objects.filter(id = int(aid))
+			if announcement.count() <= 0:
+				return HttpResponse("%s with id %s is not found" % (type, aid))
+			else:
+				announcement.status = "Passed"
+				announcement.save()
+				return HttpResponse("Pass OK")	
+		else:
+			return HttpResponse("POST ONLY")
+	else:
+		return HttpResponse("Login first")

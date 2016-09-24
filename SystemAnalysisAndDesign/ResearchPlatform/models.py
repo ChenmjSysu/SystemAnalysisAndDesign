@@ -13,16 +13,16 @@ user_type = (
 
 class UserType(models.Model):
 	user = models.OneToOneField(User, related_name = "type")
-	type = models.CharField(u"yonghuleixing", max_length = 20, choices = user_type)
+	type = models.CharField(u"用户类型", max_length = 20, choices = user_type)
 	permission = models.ForeignKey("Permission")
 
 	def __unicode__(self):
 		return "user type %s" % type
 
 class Permission(models.Model):
-	type = models.CharField(u"yonghuleixing", max_length = 20, choices = user_type)
-	write = models.BooleanField(u"write", default = False)
-	read = models.BooleanField(u"read", default = True)
+	type = models.CharField(u"用户类型", max_length = 20, choices = user_type, primary_key = True)
+	write = models.BooleanField(u"写权限", default = False)
+	read = models.BooleanField(u"读权限", default = True)
 
 	def __unicode__(self):
 		return "permission %s" % type
@@ -98,9 +98,10 @@ class Announcement(models.Model):
 	content = models.TextField(u"内容")
 	editor = models.ForeignKey(User, related_name = "notices")
 	type = models.CharField(u"类型", choices = ((u"0",u"News"),(u"1",u"Notice")), max_length = 10)
-	readCount = models.IntegerField(u"阅读数量")
-	status = models.CharField(u"状态", choices = ((u"C", u"Checking"), (u"P", u"Passed")), max_length = 10)
-	datetime = models.DateTimeField(u"发表时间")
+	readCount = models.IntegerField(u"阅读数量", default = 0)
+	status = models.CharField(u"状态", choices = ((u"C", u"Checking"), (u"P", u"Passed")), max_length = 10, default = "Checking")
+	submittime = models.DateTimeField(u"提交时间", auto_now_add = True)
+	passtime = models.DateTimeField(u"通过时间", blank = True, null = True)
 
 	def __unicode__(self):
 		return title
