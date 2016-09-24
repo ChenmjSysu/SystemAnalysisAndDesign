@@ -19,11 +19,6 @@ from forms import LoginForm, RegisterForm
 
 from models import *
 
-def hcy(request):
-	return HttpResponse("SB 黄蠢瑶")
-
-
-
 # A DjangoUeditor Demo
 def form(request):
 	# print request

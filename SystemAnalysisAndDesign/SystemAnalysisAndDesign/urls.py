@@ -35,7 +35,6 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^announcement/(\w+)', "AnnouncementList"),
     url(r'^announcement/(\w+)/(\d+)/', "GetAnnouncement"),
     url(r'^form/$', "form"),
-    url(r'^hcy/$', "hcy"),
 )
 
 urlpatterns += patterns("",
