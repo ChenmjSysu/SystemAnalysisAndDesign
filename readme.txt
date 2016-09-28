@@ -8,3 +8,6 @@ django版本: 1.5.6
 服务器开启后，访问网站的默认地址是"localhost:8000"
 
 SystemAnalysisAndDesign/urls.py 这个文件设置地址到处理函数或者模板（也就是templates里的html）的映射
+
+安装本项目所需要的python库，在当前目录输入
+pip install -r requirements.txt
