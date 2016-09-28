@@ -26,5 +26,6 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^progress/$', TemplateView.as_view(template_name="progress.html")),
     url(r'^publishedArticles/$', TemplateView.as_view(template_name="publishedArticles.html")),
     url(r'^conference/$', TemplateView.as_view(template_name="conference.html")),
+    url(r'^dataTool/$', TemplateView.as_view(template_name="dataTool.html")),
     url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html"))
 	)
