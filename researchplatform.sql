@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2016-11-28 14:36:56
+Date: 2016-11-28 20:30:07
 */
 
 CREATE DATABASE IF NOT EXISTS researchplatform default character set utf8; 
@@ -434,15 +434,20 @@ INSERT INTO `researchplatform_member` VALUES ('9', '黄副研究员', '黄玲，
 -- ----------------------------
 DROP TABLE IF EXISTS `researchplatform_permission`;
 CREATE TABLE `researchplatform_permission` (
+  `id` int(11) NOT NULL auto_increment,
   `type` varchar(20) NOT NULL,
   `write` tinyint(1) NOT NULL,
   `read` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_permission
 -- ----------------------------
+INSERT INTO `researchplatform_permission` VALUES ('1', 'SU', '1', '1');
+INSERT INTO `researchplatform_permission` VALUES ('2', 'Ma', '1', '1');
+INSERT INTO `researchplatform_permission` VALUES ('3', 'Lab', '0', '1');
+INSERT INTO `researchplatform_permission` VALUES ('4', 'Co', '0', '0');
 
 -- ----------------------------
 -- Table structure for researchplatform_project
@@ -496,11 +501,21 @@ CREATE TABLE `researchplatform_project_publisharticles` (
   KEY `ResearchPlatform_project_publishArticles_e669cc35` (`article_id`),
   CONSTRAINT `article_id_refs_id_bf8a977c` FOREIGN KEY (`article_id`) REFERENCES `researchplatform_article` (`id`),
   CONSTRAINT `project_id_refs_id_09909b28` FOREIGN KEY (`project_id`) REFERENCES `researchplatform_project` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_project_publisharticles
 -- ----------------------------
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('1', '1', '1');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('2', '1', '2');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('3', '1', '3');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('4', '1', '4');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('5', '1', '5');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('6', '1', '6');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('7', '1', '7');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('8', '1', '8');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('9', '1', '9');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('10', '1', '10');
 
 -- ----------------------------
 -- Table structure for researchplatform_project_relatedarticles
@@ -558,7 +573,6 @@ CREATE TABLE `researchplatform_team_publisharticles` (
 -- ----------------------------
 -- Records of researchplatform_team_publisharticles
 -- ----------------------------
-INSERT INTO `researchplatform_team_publisharticles` VALUES ('1', '1', '1');
 
 -- ----------------------------
 -- Table structure for researchplatform_usertype
@@ -567,18 +581,27 @@ DROP TABLE IF EXISTS `researchplatform_usertype`;
 CREATE TABLE `researchplatform_usertype` (
   `id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `permission_id` varchar(20) NOT NULL,
+  `permission_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user_id` (`user_id`),
-  KEY `ResearchPlatform_usertype_83d7f98b` (`permission_id`),
-  CONSTRAINT `permission_id_refs_type_c5b427c6` FOREIGN KEY (`permission_id`) REFERENCES `researchplatform_permission` (`type`),
+  KEY `permission_id_refs_id_c5b427c6` (`permission_id`),
+  CONSTRAINT `permission_id_refs_id_c5b427c6` FOREIGN KEY (`permission_id`) REFERENCES `researchplatform_permission` (`id`),
   CONSTRAINT `user_id_refs_id_92324a19` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_usertype
 -- ----------------------------
+INSERT INTO `researchplatform_usertype` VALUES ('1', '1', '1');
+INSERT INTO `researchplatform_usertype` VALUES ('2', '2', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('3', '3', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('4', '4', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('5', '5', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('6', '6', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('7', '7', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('8', '8', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('9', '9', '3');
+INSERT INTO `researchplatform_usertype` VALUES ('10', '10', '3');
 
 -- ----------------------------
 -- Table structure for xadmin_bookmark

@@ -14,7 +14,6 @@ user_type = (
 
 class UserType(models.Model):
     user = models.OneToOneField(User, related_name="type")
-    type = models.CharField(u"用户类型", max_length=20, choices=user_type)
     permission = models.ForeignKey("Permission")
 
     def __unicode__(self):
@@ -22,7 +21,7 @@ class UserType(models.Model):
 
 
 class Permission(models.Model):
-    type = models.CharField(u"用户类型", max_length=20, choices=user_type, primary_key=True)
+    type = models.CharField(u"用户类型", max_length=20, choices=user_type)
     write = models.BooleanField(u"写权限", default=False)
     read = models.BooleanField(u"读权限", default=True)
 
@@ -112,7 +111,7 @@ class Project(models.Model):
         temp["biologyname"]  = self.biology.name
         temp["database"] = self.database
         temp["progress"] = dict()
-        tamp["progress"]["abstract"] = self.progress.abstract
+        temp["progress"]["abstract"] = self.progress.abstract
         return temp
 
     def __unicode__(self):

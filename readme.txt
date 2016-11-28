@@ -11,3 +11,6 @@ SystemAnalysisAndDesign/urls.py 这个文件设置地址到处理函数或者模板（也就是templa
 
 安装本项目所需要的python库，在当前目录输入
 pip install -r requirements.txt
+
+超级管理员账号：fuhuamosi
+密码：1994720
