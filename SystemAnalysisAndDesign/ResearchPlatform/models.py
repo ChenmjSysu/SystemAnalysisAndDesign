@@ -30,20 +30,21 @@ class Permission(models.Model):
         return "permission %s" % type
 
 
-class Member(models.Model):
-    name = models.CharField(u"姓名", max_length=20)
-    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
-    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
-    def __unicode__(self):
-        return name
-
-
 class Team(models.Model):
     name = models.CharField(u"名称", max_length=10)
     isMain = models.BooleanField(u"是否主要团队", default=False)
     introduction = models.TextField(u"团队介绍")  # 简介/研究方向/课题任务
     publishArticles = models.ManyToManyField("Article", related_name="from_team")
+
+    def __unicode__(self):
+        return name
+
+
+class Member(models.Model):
+    name = models.CharField(u"姓名", max_length=20)
+    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
+    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
+    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
 
     def __unicode__(self):
         return name
