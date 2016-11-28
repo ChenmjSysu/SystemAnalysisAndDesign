@@ -7,6 +7,19 @@ class UserTypeAdmin(object):
 class PermissionAdmin(object):
     pass
 
+class AnnouncementAdmin(object):
+    pass
+
+class MemberAdmin(object):
+	pass
+
+class TeamAdmin(object):
+	pass
+
+
 site.register(UserType, UserTypeAdmin)
 site.register(Permission, PermissionAdmin)
+site.register(Announcement, AnnouncementAdmin)
+site.register(Member, MemberAdmin)
+site.register(Team, TeamAdmin)
 

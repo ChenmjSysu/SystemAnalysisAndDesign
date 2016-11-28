@@ -32,8 +32,10 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^publishedArticles/$', TemplateView.as_view(template_name="publishedArticles.html")),
     url(r'^conference/$', TemplateView.as_view(template_name="conference.html")),
     url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html")),
-    url(r'^announcement/(\w+)', "AnnouncementList"),
-    url(r'^announcement/(\w+)/(\d+)/', "GetAnnouncement"),
+    url(r'^add/(\w+)', "Add"),
+    url(r'^list/(\w+)', "List"),
+    url(r'^delete/(\w+)', "Delete"),
+    url(r'^(\w+)/(\d+)/', "Detail"),    
     url(r'^form/$', "form"),
 )
 

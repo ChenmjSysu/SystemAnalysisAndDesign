@@ -18,7 +18,7 @@ class UserType(models.Model):
     permission = models.ForeignKey("Permission")
 
     def __unicode__(self):
-        return "user type %s" % type
+        return "%s is %s" % (self.user.username, self.type)
 
 
 class Permission(models.Model):
@@ -27,7 +27,7 @@ class Permission(models.Model):
     read = models.BooleanField(u"读权限", default=True)
 
     def __unicode__(self):
-        return "permission %s" % type
+        return "permission of %s" % self.type
 
 
 class Member(models.Model):
@@ -35,8 +35,14 @@ class Member(models.Model):
     profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
     user = models.OneToOneField(User, blank=True, null=True, related_name="member")
 
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["profile"] = self.profile
+        return temp
+
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class Team(models.Model):
@@ -45,8 +51,15 @@ class Team(models.Model):
     introduction = models.TextField(u"团队介绍")  # 简介/研究方向/课题任务
     publishArticles = models.ManyToManyField("Article", related_name="from_team")
 
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["isMain"] = self.isMain
+        temp["introduction"] = self.introduction
+        return temp
+
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class Article(models.Model):
@@ -56,15 +69,24 @@ class Article(models.Model):
     year = models.IntegerField(u"年份")
     link = models.CharField(u"链接", max_length=200)
 
+    def toDict(self):
+        temp = dict()
+        temp["order"] = self.order
+        temp["title"] = self.title
+        temp["author"] = self.author
+        temp["year"] = self.year
+        temp["link"] = self.link
+        return temp
+
     def __unicode__(self):
-        return '%d %s' % (order, title)
+        return '%d %s' % (self.order, self.title)
 
 
 class BiologicalCategory(models.Model):
     name = models.CharField(u"生物类别", max_length=20)
 
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class BiologicalName(models.Model):
@@ -72,7 +94,7 @@ class BiologicalName(models.Model):
     category = models.ForeignKey("BiologicalCategory", related_name="biology")
 
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class Project(models.Model):
@@ -83,16 +105,31 @@ class Project(models.Model):
     relatedArticles = models.ManyToManyField("Article", related_name="about_project")
     progress = models.OneToOneField("ProjectProgress", related_name="project")
 
+    def toDict(self):
+        temp = dict()
+        temp["introduction"] = self.introduction
+        temp["biologyname"]  = self.biology.name
+        temp["database"] = self.database
+        temp["progress"] = dict()
+        tamp["progress"]["abstract"] = self.progress.abstract
+        return temp
+
     def __unicode__(self):
-        return biology.name
+        return self.biology.name
 
 
 class ProjectProgress(models.Model):
     content = models.TextField(u"内容")
     abstract = models.TextField(u"摘要")
 
+    def toDict(self):
+        temp = dict()
+        temp["content"] = self.content
+        temp["abstract"] = self.abstract
+        return temp
+
     def __unicode__(self):
-        return project.biology.name
+        return self.project.biology.name
 
 
 class AcademicConference(models.Model):
@@ -100,8 +137,15 @@ class AcademicConference(models.Model):
     detail = models.TextField(u"详情")
     year = models.IntegerField(u"年份")
 
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["detail"] = self.detail
+        temp["year"] = self.year
+        return temp
+
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class Announcement(models.Model):
@@ -115,5 +159,16 @@ class Announcement(models.Model):
     submittime = models.DateTimeField(u"提交时间", auto_now_add=True)
     passtime = models.DateTimeField(u"通过时间", blank=True, null=True)
 
+    def toDict(self):
+        a = dict()
+        a["id"] = self.id
+        a["title"] = self.title
+        a["contemt"] = self.content
+        a["editor"] = self.editor.member.name
+        a["type"] = self.type
+        a["readCount"] = self.readCount
+        a["submittime"] = self.submittime.strftime("%Y-%m-%d %H:%M:%S")
+        return a
+
     def __unicode__(self):
-        return title
+        return "%s(%s)" % (self.title, self.type)
