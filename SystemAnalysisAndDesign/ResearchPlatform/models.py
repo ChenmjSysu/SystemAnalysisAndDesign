@@ -152,9 +152,9 @@ class Announcement(models.Model):
     title = models.CharField(u"标题", max_length=50)
     content = models.TextField(u"内容")
     editor = models.ForeignKey(User, related_name="notices")
-    type = models.CharField(u"类型", choices=((u"0", u"News"), (u"1", u"Notice")), max_length=10)
+    type = models.CharField(u"类型", choices=((u"News", u"News"), (u"Notice", u"Notice")), max_length=10)
     readCount = models.IntegerField(u"阅读数量", default=0)
-    status = models.CharField(u"状态", choices=((u"C", u"Checking"), (u"P", u"Passed")), max_length=10,
+    status = models.CharField(u"状态", choices=((u"Checking", u"Checking"), (u"Passed", u"Passed")), max_length=10,
                               default="Checking")
     submittime = models.DateTimeField(u"提交时间", auto_now_add=True)
     passtime = models.DateTimeField(u"通过时间", blank=True, null=True)
