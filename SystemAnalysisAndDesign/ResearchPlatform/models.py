@@ -29,22 +29,6 @@ class Permission(models.Model):
         return "permission of %s" % self.type
 
 
-class Member(models.Model):
-    name = models.CharField(u"姓名", max_length=20)
-    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
-    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField("Team", blank=True, null=True, related_name="belong_team")
-
-    def toDict(self):
-        temp = dict()
-        temp["name"] = self.name
-        temp["profile"] = self.profile
-        return temp
-
-    def __unicode__(self):
-        return self.name
-
-
 class Team(models.Model):
     name = models.CharField(u"名称", max_length=10)
     isMain = models.BooleanField(u"是否主要团队", default=False)
@@ -56,6 +40,22 @@ class Team(models.Model):
         temp["name"] = self.name
         temp["isMain"] = self.isMain
         temp["introduction"] = self.introduction
+        return temp
+
+    def __unicode__(self):
+        return self.name
+
+
+class Member(models.Model):
+    name = models.CharField(u"姓名", max_length=20)
+    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
+    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
+    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
+
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["profile"] = self.profile
         return temp
 
     def __unicode__(self):
@@ -108,7 +108,7 @@ class Project(models.Model):
     def toDict(self):
         temp = dict()
         temp["introduction"] = self.introduction
-        temp["biologyname"]  = self.biology.name
+        temp["biologyname"] = self.biology.name
         temp["database"] = self.database
         temp["progress"] = dict()
         temp["progress"]["abstract"] = self.progress.abstract
