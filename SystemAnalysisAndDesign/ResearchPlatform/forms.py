@@ -14,7 +14,7 @@ class RegisterForm(forms.Form):
 	username = forms.CharField(required = True, label = u"username", error_messages = {"required": "Please input username"})
 	password1 = forms.CharField(required = True, label = u"password1", error_messages = {"required": "Please input password1"})
 	password2 = forms.CharField(required = True, label = u"password2", error_messages = {"required": "Please input password2"})
-	email = forms.CharField(required = True, label = u"email", error_messages = {"required": "Please input email"})
+	email = forms.CharField(required = False, label = u"email")
 	usertype = forms.CharField(required = False, label = u"usertype")
 
 	# def clean(self):

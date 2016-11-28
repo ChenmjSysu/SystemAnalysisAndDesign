@@ -70,7 +70,7 @@ def register(request):
 			username = form.cleaned_data["username"]
 			password1 = form.cleaned_data["password1"]
 			password2 = form.cleaned_data["password2"]
-			email = form.cleaned_data["email"]
+			email = username
 			usertype = form.cleaned_data["usertype"]
 
 			if password2 != password1:
@@ -87,8 +87,8 @@ def register(request):
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			
 			permission = Permission.objects.filter(type = usertype)
-			print permission
-			print "+++++++++++++++++"
+			print usertype
+			print "+++"
 			if len(permission) == 0: 
 				response_data["result"] = "fail"
 				response_data["message"] = "user type is not exist"
@@ -118,7 +118,7 @@ def register(request):
 				response_data["message"] = "unknown error"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 		else:
-			errors.extend(RegisterForm.errors.values())
+			# errors.extend(RegisterForm.errors.value())
 			response_data["result"] = "fail"
 			response_data["message"] = "input is not valid"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")

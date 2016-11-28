@@ -23,7 +23,7 @@
             <div class='top_right_container'></div>
               {% with type='manager' %}
                 {% if type == 'normal' %}
-                  <div class='username'>陈xx<a href='/' class='logoff_right'>退出</a></div>
+                  <div class='username'>{{request.user}}<a href='/' class='logoff_right'>退出</a></div>
                 {% elif type == 'lab' %}
                   <div class='username'>陈xx</div>
                   <div class='top_drop'>

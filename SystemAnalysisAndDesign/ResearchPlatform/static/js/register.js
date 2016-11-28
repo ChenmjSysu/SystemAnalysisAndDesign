@@ -1,11 +1,13 @@
 $(document).ready(function($) {
 	$('.btn.confirm').click(function(){
 		$.ajax({
-			url: '/login/',
+			url: '/register/',
 			type: 'post',
 			data: {
-				username:$('input[name=name]').val(),
-				password:$('input[name=password]').val(),
+				username:$('input[name=username]').val(),
+				password1:$('input[name=password1]').val(),
+				password2:$('input[name=password2]').val(),
+				usertype:$('select[name=usertype]').val(),
 			},
 		})
 		.done(function(data) {

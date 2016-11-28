@@ -34,7 +34,7 @@ class Member(models.Model):
     name = models.CharField(u"姓名", max_length=20)
     profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
     user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
+    team = models.OneToOneField("Team", blank=True, null=True, related_name="belong_team")
 
     def toDict(self):
         temp = dict()

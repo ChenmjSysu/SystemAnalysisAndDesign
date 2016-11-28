@@ -2,7 +2,7 @@
 
 {% block head %}
   <link href="../static/css/login.css" rel="stylesheet">
-  <script type="text/javascript" src='../static/js/register.js'></script>
+  <script type="text/javascript" src='/static/js/register.js'></script>
 {% endblock %}
 
  
@@ -16,21 +16,21 @@
         <div class='inputs'>
           <div class='inputli'>
             <div class='input_desc long'>注册邮箱</div>
-            <input type='email' class='input_val' name='name'>
+            <input type='email' class='input_val' name='username'>
           </div>
           <div class='inputli'>
             <div class='input_desc long'>密码</div>
-            <input type='password' class='input_val' name='password'>
+            <input type='password' class='input_val' name='password1'>
           </div>
           <div class='inputli'>
             <div class='input_desc long'>密码</div>
-            <input type='password' class='input_val'>
+            <input type='password' class='input_val' name = 'password2'>
           </div>
           <div class='inputli'>
             <div class='input_desc long'>用户类型</div>
-            <select name='type' class='input_val'>
-              <option>匿名用户</option>
-              <option>实验室用户</option>
+            <select name='usertype' class='input_val'>
+              <option value="Co">普通用户</option>
+              <option value="lab">实验室用户</option>
             </select>
           </div>
         </div>
