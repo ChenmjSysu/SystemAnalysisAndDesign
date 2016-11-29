@@ -2,7 +2,7 @@
   <div class='top'>
     <div class="top_container"> 	
     	<div class="col-md-2 logo">
-        <a href="/index"><img src="../static/images/logo.jpg" height="130"></a>
+        <a href="/index"><img src="/static/images/logo.jpg" height="130"></a>
       </div>
       <div class="col-md-10">
       	<p class="chn-title">国家重点研发计划——重要热带病传播相关的入侵媒介及其病原体的生物学特性研究</p>
@@ -20,30 +20,34 @@
             </div>
           </div>
           <div class='top_right'>
-            <div class='top_right_container'></div>
-              {% with type='manager' %}
-                {% if type == 'normal' %}
-                  <div class='username'>{{request.user}}<a href='/' class='logoff_right'>退出</a></div>
-                {% elif type == 'lab' %}
-                  <div class='username'>陈xx</div>
+            <div class='top_right_container'></div>                
+                {% if user.type.permission.type == 'SU' %}
+                  <div class='username'>{{user.username}}<a href='/logout/' class='logoff_right'>退出</a></div>
+                {% elif user.type.permission.type == 'Lab' %}
+                  <div class='username'>{{user.username}}</div>
                   <div class='top_drop'>
-                    <a href="/">发表文章</a>
-                    <a href="/">修改项目进展</a>
-                    <a href="/">退出</a>
+                    <!-- <a href="/">发表文章</a>
+                    <a href="/">修改项目进展</a> -->
+                    <a href="/logout/">退出</a>
                   </div>
-                {% elif type == 'manager' %}
-                  <div class='username'>陈xx</div>
+                {% elif user.type.permission.type == 'Ma' %}
+                  <div class='username'>{{user.username}}</div>
                   <div class='top_drop'>
                     <a href="/addNews">发布新闻</a>
                     <a href="/">发布公告</a>
-                    <a href="/">管理文章</a>
-                    <a href="/">退出</a>
+                    <a href="/manage/">管理文章</a>
+                    <a href="/logout/">退出</a>
+                  </div>
+                {% elif user.type.permission.type == 'Co' %}
+                  <div class='username'>{{user.username}}</div>
+                  <div class='top_drop'>
+                    <a href="/logout/">退出</a>
                   </div>
                 {% else %}
                   <a href="/login" class='header_op_li'>登录</a>
                   <a href="/register" class='header_op_li'>注册</a>
                 {% endif %}
-              {% endwith %}
+              
             </div>
           </div>
         </div>
@@ -54,14 +58,14 @@
     <div class="blog-masthead">
       <div class="row">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="/index">首页</a>
-          <a class="blog-nav-item" href="/about">关于项目</a>
-          <a class="blog-nav-item" href="/team">研究团队</a>
-          <a class="blog-nav-item" href="/progress">项目进展</a>
-          <a class="blog-nav-item" href="/publishedArticles">发表文章</a>
-          <a class="blog-nav-item" href="/conference">学术交流</a>
-          <a class="blog-nav-item" href="/dataTool">数据/工具</a>
-          <a class="blog-nav-item" href="#">数据分析</a>
+          <a class="blog-nav-item  {% if header == "header" %}active{% endif %}" href="/index">首页</a>
+          <a class="blog-nav-item  {% if header == "about" %}active{% endif %}" href="/about">关于项目</a>
+          <a class="blog-nav-item  {% if header == "team" %}active{% endif %}" href="/team">研究团队</a>
+          <a class="blog-nav-item  {% if header == "progress" %}active{% endif %}" href="/progress">项目进展</a>
+          <a class="blog-nav-item  {% if header == "publishedArticles" %}active{% endif %}" href="/publishedArticles">发表文章</a>
+          <a class="blog-nav-item  {% if header == "conference" %}active{% endif %}" href="/conference">学术交流</a>
+          <a class="blog-nav-item  {% if header == "tools" %}active{% endif %}" href="/dataTool">数据/工具</a>
+          <a class="blog-nav-item  {% if header == "ananlysis" %}active{% endif %}" href="#">数据分析</a>
         </nav>
 	    </div>
     </div>

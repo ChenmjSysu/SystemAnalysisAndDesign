@@ -17,7 +17,7 @@ class UserType(models.Model):
     permission = models.ForeignKey("Permission")
 
     def __unicode__(self):
-        return "%s is %s" % (self.user.username, self.type)
+        return "%s is %s" % (self.user.username, self.permission.type)
 
 
 class Permission(models.Model):
@@ -27,22 +27,6 @@ class Permission(models.Model):
 
     def __unicode__(self):
         return "permission of %s" % self.type
-
-
-class Member(models.Model):
-    name = models.CharField(u"姓名", max_length=20)
-    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
-    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField("Team", blank=True, null=True, related_name="belong_team")
-
-    def toDict(self):
-        temp = dict()
-        temp["name"] = self.name
-        temp["profile"] = self.profile
-        return temp
-
-    def __unicode__(self):
-        return self.name
 
 
 class Team(models.Model):
@@ -56,6 +40,22 @@ class Team(models.Model):
         temp["name"] = self.name
         temp["isMain"] = self.isMain
         temp["introduction"] = self.introduction
+        return temp
+
+    def __unicode__(self):
+        return self.name
+
+
+class Member(models.Model):
+    name = models.CharField(u"姓名", max_length=20)
+    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
+    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
+    team = models.ForeignKey(Team, blank=True, null=True, related_name="belong_team")
+
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["profile"] = self.profile
         return temp
 
     def __unicode__(self):
@@ -99,7 +99,7 @@ class BiologicalName(models.Model):
 
 class Project(models.Model):
     introduction = models.TextField(u"基本信息介绍")
-    biology = models.OneToOneField("BiologicalName")
+    biology = models.OneToOneField("BiologicalName", related_name = "project")
     database = models.TextField(u"相关数据库")
     publishArticles = models.ManyToManyField("Article", related_name="from_project")
     relatedArticles = models.ManyToManyField("Article", related_name="about_project")
@@ -108,7 +108,7 @@ class Project(models.Model):
     def toDict(self):
         temp = dict()
         temp["introduction"] = self.introduction
-        temp["biologyname"]  = self.biology.name
+        temp["biologyname"] = self.biology.name
         temp["database"] = self.database
         temp["progress"] = dict()
         temp["progress"]["abstract"] = self.progress.abstract
@@ -130,6 +130,7 @@ class ProjectProgress(models.Model):
 
     def __unicode__(self):
         return self.project.biology.name
+        # return self.abstract
 
 
 class AcademicConference(models.Model):
@@ -142,6 +143,7 @@ class AcademicConference(models.Model):
         temp["name"] = self.name
         temp["detail"] = self.detail
         temp["year"] = self.year
+        temp["id"] = self.id
         return temp
 
     def __unicode__(self):
@@ -152,9 +154,9 @@ class Announcement(models.Model):
     title = models.CharField(u"标题", max_length=50)
     content = models.TextField(u"内容")
     editor = models.ForeignKey(User, related_name="notices")
-    type = models.CharField(u"类型", choices=((u"0", u"News"), (u"1", u"Notice")), max_length=10)
+    type = models.CharField(u"类型", choices=((u"News", u"News"), (u"Notice", u"Notice")), max_length=10)
     readCount = models.IntegerField(u"阅读数量", default=0)
-    status = models.CharField(u"状态", choices=((u"C", u"Checking"), (u"P", u"Passed")), max_length=10,
+    status = models.CharField(u"状态", choices=((u"Checking", u"Checking"), (u"Passed", u"Passed")), max_length=10,
                               default="Checking")
     submittime = models.DateTimeField(u"提交时间", auto_now_add=True)
     passtime = models.DateTimeField(u"通过时间", blank=True, null=True)
@@ -164,7 +166,7 @@ class Announcement(models.Model):
         a["id"] = self.id
         a["title"] = self.title
         a["contemt"] = self.content
-        a["editor"] = self.editor.member.name
+        a["editor"] = "self.editor.member.name"
         a["type"] = self.type
         a["readCount"] = self.readCount
         a["submittime"] = self.submittime.strftime("%Y-%m-%d %H:%M:%S")
@@ -172,3 +174,10 @@ class Announcement(models.Model):
 
     def __unicode__(self):
         return "%s(%s)" % (self.title, self.type)
+
+class DataTool(models.Model):
+    name = models.CharField(u"名称", max_length=50)
+    link = models.CharField(u"链接", max_length=200)
+
+    def __unicode__(self):
+        return self.name

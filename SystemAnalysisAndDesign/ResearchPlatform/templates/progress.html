@@ -1,7 +1,7 @@
 {% extends 'part/base.html' %}
 
 {% block head %}
-  <link href="../static/css/progress.css" rel="stylesheet">
+  <link href="/static/css/progress.css" rel="stylesheet">
   <!-- <script type="text/javascript" src='../static/js/about.js'></script> -->
 {% endblock %}
 
@@ -12,7 +12,20 @@
     {%  include 'part/header.html' %}
     <div id='container'>
     	<div id='container_left'>
-    		<div class='left_nav nav1'>
+            {% for category in biologicalCategory %}
+            <div class='left_nav'>
+                <div class='nav_head'>
+                    <div class='icon'></div>
+                    <div class='nav_head_title'>{{category.name}}</div>
+                </div>
+                <div class='nav_body'>
+                    {% for name in category.biology.all %}
+                    <a href="/progress/{{name.id}}" {% if name.id == biologicalName.id %}class="active"{% endif %}>{{name.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+    		<!-- <div class='left_nav nav1'>
     			<div class='nav_head'>
     				<div class='icon'></div>
     				<div class='nav_head_title'>螺</div>
@@ -42,10 +55,10 @@
     				<a href="">疟原虫</a>
     				<a href="">血吸虫</a>
     			</div>
-    		</div>
+    		</div> -->
     	</div>
     	<div id='container_right'>
-            <p>此板块的左侧边栏与“关于项目”板块的左侧边栏样式、内容完全一致。当点击某一物种的名称（即目录的二级标题）时，板块的右侧主体部分以文字、图片、链接等形式展示与该物种相关的项目进展</p>
+            <!-- <p>此板块的左侧边栏与“关于项目”板块的左侧边栏样式、内容完全一致。当点击某一物种的名称（即目录的二级标题）时，板块的右侧主体部分以文字、图片、链接等形式展示与该物种相关的项目进展</p>
     		<div class='part'>
     			<div class='part_title'>项目一</div>
     			<div class='part_content'>
@@ -57,7 +70,8 @@
                 <div class='part_content'>
                     <p>XXXXXXXXX</p>
                 </div>
-            </div>
+            </div> -->
+            {{biologicalName.project.progress.content|safe}}
     	</div>
     </div>
 {% endblock %}

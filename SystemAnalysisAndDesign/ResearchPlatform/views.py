@@ -27,6 +27,59 @@ def form(request):
 
 	return render_to_response("form.html", context_instance=RequestContext(request))
 
+def index(request):
+	result = dict()
+	news = Announcement.objects.filter(type="News").order_by("-submittime")[:3]
+	notices = Announcement.objects.filter(type="Notice").order_by("-submittime")[:3]
+	result["news"] = news
+	result["notices"] = notices
+	result["header"] = "header"
+	print RequestContext(request)
+	return render_to_response("index.html", result, context_instance=RequestContext(request))
+
+def Teams(request, id="1"):
+	mainTeam = Team.objects.filter(isMain = True)[0]
+	currentTeam = Team.objects.get(id=int(id))
+	teams = Team.objects.filter(isMain = False)
+	print mainTeam
+	print teams
+	return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams, "header": "team", "currentTeam": currentTeam, "team": True, "member": False}, context_instance=RequestContext(request))
+
+def Members(request, id="1"):
+	response_data = dict()
+	mainTeam = Team.objects.filter(isMain = True)[0]
+	teams = Team.objects.filter(isMain = False)
+	currentMember = Member.objects.filter(id = int(id))
+	if len(currentMember) == 0:
+		response_data["result"] = "fail"
+		response_data["message"] = "user type is not exist"
+		return HttpResponse(json.dumps(response_data), content_type = "application/json")
+	else:
+		currentMember = currentMember[0]
+		response_data["result"] = "success"
+		response_data["message"] = currentMember.toDict()
+		# return HttpResponse(json.dumps(response_data), content_type = "application/json")
+		return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams, "header": "team", "currentMember": currentMember, "team": False, "member": True}, context_instance=RequestContext(request))
+
+
+def About(request, id="1"):
+	biologicalCategory = BiologicalCategory.objects.all()
+	biologicalName = BiologicalName.objects.get(id = int(id))
+	result = dict()
+	result["biologicalCategory"] = biologicalCategory
+	result["biologicalName"] = biologicalName
+	result["header"] = "about"
+	return render_to_response("about.html", result, context_instance=RequestContext(request))	
+
+def Progress(request, id="1"):
+	biologicalCategory = BiologicalCategory.objects.all()
+	biologicalName = BiologicalName.objects.get(id = int(id))
+	result = dict()
+	result["biologicalCategory"] = biologicalCategory
+	result["biologicalName"] = biologicalName
+	result["header"] = "progress"
+	return render_to_response("progress.html", result, context_instance=RequestContext(request))	
+
 # Login
 def login(request):
 	if request.method == "GET":
@@ -123,21 +176,18 @@ def register(request):
 			response_data["message"] = "input is not valid"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
 
-# About the Projects
-def AboutProject(request):
-	biologicalCategory = BiologicalCategory.objects.all()
+# # About the Projects
+# def AboutProject(request):
+# 	biologicalCategory = BiologicalCategory.objects.all()
 
-# Team
-def Team(request):
-	team = Team.objects.all()
 
-# The Progress of projects
-def ProjectProgress(request):
-	biologicalCategory = BiologicalCategory.objects.all()
+# # The Progress of projects
+# def ProjectProgress(request):
+# 	biologicalCategory = BiologicalCategory.objects.all()
 
 # Get a list of notices/news
 def List(request, type):
-	announcements = Announcement.objects.filter(type = type).order_by("submittime")
+	announcements = Announcement.objects.filter(type = type).order_by("-submittime")
 	count = announcements.count()	
 	countPerPage = int(request.GET.get("countPerPage", 10))
 	pageCount = count / countPerPage
@@ -162,18 +212,19 @@ def Detail(request, type, id):
 	response_data = {}	
 	if len(announcement) > 0:
 		response_data["result"] = "success"
-		response_data["message"] = announcement[0].toDict()		
+		response_data["message"] = announcement[0].toDict()	
+		print response_data	
 		return HttpResponse(json.dumps(response_data), content_type = "application/json")
 	else:
 		response_data["result"] = "fail"
 		response_data["message"] = "an error id"
-		return HttpResponse(json.dumps(respons_data), content_type = "application/json")
+		return HttpResponse(json.dumps(response_data), content_type = "application/json")
 
 # Add a notice/news
 def Add(request, type):
 	response_data = {}	
 	if request.user.is_authenticated():
-		if Permission.objects.get(type = request.user.type.type).write == False:
+		if Permission.objects.get(type = request.user.type.permission.type).write == False:
 			response_data["result"] = "fail"
 			response_data["message"] = "permission denied"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
@@ -184,9 +235,9 @@ def Add(request, type):
 			title = request.POST.get("title", None)
 			announcement = Announcement.objects.create(title = title, content = content, editor = request.user, type = type)
 			announcement.save()
-			if content is None or title is None:
+			if content is None or title is None or content == "" or title == "":
 				response_data["result"] = "fail"
-				response_data["message"] = "content or title can not be null"
+				response_data["message"] = "content or title can not be null or empty"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			response_data["result"] = "success"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
@@ -201,7 +252,7 @@ def Delete(request, type):
 	response_data = {}
 	login(request)
 	if request.user.is_authenticated():
-		if Permission.objects.get(type = request.user.type.type).write == False:
+		if Permission.objects.get(type = request.user.type.permission.type).write == False:
 			response_data["result"] = "fail"
 			response_data["message"] = "permission denied"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
@@ -213,7 +264,7 @@ def Delete(request, type):
 				response_data["message"] = "%s with id %s is not found" % (type, aid)
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			else:
-				announcement.delete()
+				# announcement.delete()
 				response_data["result"] = "success"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 		else:
@@ -246,3 +297,48 @@ def Delete(request, type):
 # 		return HttpResponse("Login first")
 
 
+def Articles(request):
+	articles = Article.objects.all()
+	temp = dict()
+	for article in articles:
+		year = article.year
+		if not temp.has_key(year):
+			temp[year] = list()
+		temp[year].append(article.toDict())
+	result = list()
+	for year in sorted(temp.keys(), reverse = True):
+		result.append({"year": year, "articles": temp[year]})
+	return render_to_response("publishedArticles.html", {"result": result, "header": "publishedArticles"}, context_instance=RequestContext(request))
+
+def Conference(request, id="1"):
+	conferences = AcademicConference.objects.all()
+	# result = list()
+	# yearSet = set()
+	# for conference in conferences:
+	# 	year = conference.year
+	# 	yearSet.add(year)
+	# for year in sorted(list(yearSet), reverse = True):
+	# 	result.append({"year": year, "conferences": AcademicConference.objects.filter(year = year).all()})
+	# print result
+
+	temp = dict()
+	for conference in conferences:
+		year = conference.year
+		if not temp.has_key(year):
+			temp[year] = list()
+		temp[year].append(conference.toDict())
+	result = list()
+	for year in sorted(temp.keys(), reverse = True):
+		result.append({"year": year, "conferences": temp[year]})
+	currentCon = AcademicConference.objects.get(id=id)
+	return render_to_response("conference.html", {"result": result, "header": "conference", "currentCon": currentCon}, context_instance=RequestContext(request))
+
+def DataTools(request):
+	dataTools = DataTool.objects.all()
+	return render_to_response("dataTool.html", {"dataTools": dataTools}, context_instance=RequestContext(request))
+
+def Manage(request):
+	result = dict()
+	result["news"] = Announcement.objects.filter(type="News")
+	result["notice"] = Announcement.objects.filter(type="Notice")
+	return render_to_response("manage.html", result, context_instance=RequestContext(request))

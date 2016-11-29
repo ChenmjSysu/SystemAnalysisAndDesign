@@ -1,13 +1,27 @@
 {% extends 'part/base.html' %}
 
 {% block head %}
-	<link href="../static/css/add.css" rel="stylesheet">
+	<link href="/static/css/add.css" rel="stylesheet">
     <!-- 配置文件 -->
-    <script type="text/javascript" src="../static/js/ueditor/ueditor.config.js"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="../static/js/ueditor/ueditor.all.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
-	<script type="text/javascript" src='../static/js/addNews.js'></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->    
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src='/static/js/addNews.js'></script>
+    <style>
+    div#main {
+        width: 80%;
+        margin: 20px auto;
+    }
+    input[name=title] {
+        width: 60%;
+        margin: 10px 10px 10px 0;
+    }
+    button#submit {
+        margin: 10px 0 0 0;
+        font-size: 25px;
+    }
+    </style>
 {% endblock %}
 
  
@@ -15,8 +29,24 @@
 
 {% block content %}
     {%  include 'part/header.html' %}
-    <script id="ueditor" name="content" type="text/plain"></script>
-	<script type="text/javascript">
+    <div id="main">
+    <input name="title" placeholder="请输入标题"></input>
+    <select name="type">
+        <option value="News">新闻动态</option>
+        <option value="Notice">通知公告</option>
+    </select>
+    <script id="ueditor" type="text/plain" style="width:100%;height:400px;margin: 0 auto;"><h1>请输入内容...</h1></script>
+
+    <button id="submit">提交</button>
+    </div>
+	<!--<script type="text/javascript">
         var ue = UE.getEditor('ueditor');
-    </script>
+        function getContent() {
+            var arr = [];
+            arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getContent());
+            alert(arr.join("\n"));
+        }
+    </script>-->
 {% endblock %}

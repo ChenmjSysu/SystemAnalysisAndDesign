@@ -13,7 +13,20 @@
     <div id='container'>
     	<table>
     		<tbody>
-    			<tr>
+                {% for term in result %}
+                <tr>
+                    <td class='short'><span class='circle'></span>{{term.year}}</td>
+                    <td class='long'>
+                        <ol>
+                            {% for article in term.articles %}
+                            <li><a target="blank" href="{{article.link}}" >{{article.editor}}. {{article.title}}</a></li>
+                            {% endfor %}                            
+                        </ol>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+    			<!-- <tr>
     				<td class='short'><span class='circle'></span>2011年</td>
     				<td class='long'>
     					<ol>
@@ -59,7 +72,7 @@
     						<li>Heqing Huang, Yang Yi, Jiyue Wang. Time Window Constraint Resource Allocation by Artificial Life Methods, 12th World Multi-Conference on Systems, Cybernetics and Informatics: (WMSCI 2008), Orlando, Florida, USA, 2008</li>
     					</ol>
     				</td>
-    			</tr>
+    			</tr> -->
     		</tbody>
     	</table>
     </div>

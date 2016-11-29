@@ -3,6 +3,7 @@
 {% block head %}
 
   <link href="../static/css/index.css" rel="stylesheet">
+  <meta charset="utf8">
 
 {% endblock %}
 
@@ -52,9 +53,14 @@
                   <a href="http://news2.sysu.edu.cn/">More >></a>
                 </div>
                 <div class="panel-heading">
-                  <h3 class="panel-title">项目进展</h3>
+                  <h3 class="panel-title">新闻动态</h3>
                 </div>
                 <div class="panel-body">    
+                  <ul>
+                    {% for term in news %}
+                    <li><a href="/News/{{term.id}}/">{{term.title}}</a></li>
+                    {% endfor %}
+                  </ul>
                 </div>   <!-- /.panel-body -->
               </div><!-- /.panel-success -->
 
@@ -63,9 +69,14 @@
                   <a href="http://www.sysu.edu.cn/2012/en/announcements/index.htm">More >></a>
                 </div>
                 <div class="panel-heading">
-                  <h3 class="panel-title">发表文章</h3>
+                  <h3 class="panel-title">通知公告</h3>
                 </div>
                 <div class="panel-body">
+                  <ul>
+                    {% for term in notices %}
+                    <li><a href="/Notice/{{term.id}}/">{{term.title}}</a></li>
+                    {% endfor %}
+                  </ul>
                 </div><!-- /.panel-body -->
               </div><!-- /.panel-danger -->
 
