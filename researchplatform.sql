@@ -10,10 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2016-11-29 01:42:15
+Date: 2016-11-29 14:24:48
 */
 
-CREATE DATABASE IF NOT EXISTS researchplatform default character set utf8; 
+CREATE DATABASE IF NOT EXISTS researchplatform default character set utf8;
 use researchplatform;
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -172,7 +172,7 @@ CREATE TABLE `auth_user` (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$10000$r6SQ1UvhM7h1$kwo/ZlWSAf7+BclqIdrTAN4FFaVcWgAurXcrCNisf3o=', '2016-11-27 14:30:43', '1', 'fuhuamosi', '', '', '', '1', '1', '2016-11-27 14:29:33');
+INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$10000$r6SQ1UvhM7h1$kwo/ZlWSAf7+BclqIdrTAN4FFaVcWgAurXcrCNisf3o=', '2016-11-29 02:52:14', '1', 'fuhuamosi', '', '', '', '1', '1', '2016-11-27 14:29:33');
 INSERT INTO `auth_user` VALUES ('2', 'pbkdf2_sha256$10000$vPKNgwin0rRx$lGnJp1lffTJ3n/XaBDTiv2WkyzuEbzkAOf/Uq4Eb0oE=', '2016-11-28 04:18:55', '0', 'fuyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:18:55');
 INSERT INTO `auth_user` VALUES ('3', 'pbkdf2_sha256$10000$FdnPjyz0LOqt$OgF6EtGFYGsgonOhfUH+73J92wa3V3aD+jdMBoLI7AM=', '2016-11-28 04:20:25', '0', 'chenyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:20:25');
 INSERT INTO `auth_user` VALUES ('4', 'pbkdf2_sha256$10000$TOePgEXBwAzp$mI1MHs56z1J3JSwyraGHuo7cb4o1Vd5xA+jSV9XnDoQ=', '2016-11-28 04:24:07', '0', 'liyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:24:07');
@@ -275,6 +275,7 @@ CREATE TABLE `django_session` (
 -- ----------------------------
 -- Records of django_session
 -- ----------------------------
+INSERT INTO `django_session` VALUES ('v5p2nu8m1h11iou837a8gexi7872i6m7', 'MzQyMThmNzVhOTU1Yzk4YWI1NTMwNTU2NDE0NzFiOWVhN2MzNjVhOTp7IkxJU1RfUVVFUlkiOltbIlJlc2VhcmNoUGxhdGZvcm0iLCJiaW9sb2dpY2FsY2F0ZWdvcnkiXSwiIl0sIl9hdXRoX3VzZXJfaWQiOjEsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2016-12-13 05:51:54');
 INSERT INTO `django_session` VALUES ('zgmbpvmssnpaubz0hs0lboh0l9a8criv', 'YjgzMGZkZDlmODAwZjllNDlhMzM0NzU4MGQzMTVkMDc2OTFjZDM4Njp7IkxJU1RfUVVFUlkiOltbImF1dGgiLCJwZXJtaXNzaW9uIl0sIiJdLCJfYXV0aF91c2VyX2lkIjoxLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9', '2016-12-12 17:06:30');
 
 -- ----------------------------
@@ -382,12 +383,15 @@ CREATE TABLE `researchplatform_biologicalcategory` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_biologicalcategory
 -- ----------------------------
 INSERT INTO `researchplatform_biologicalcategory` VALUES ('1', '传染病');
+INSERT INTO `researchplatform_biologicalcategory` VALUES ('2', '螺');
+INSERT INTO `researchplatform_biologicalcategory` VALUES ('3', '蚊媒');
+INSERT INTO `researchplatform_biologicalcategory` VALUES ('4', '病原体');
 
 -- ----------------------------
 -- Table structure for researchplatform_biologicalname
@@ -400,12 +404,19 @@ CREATE TABLE `researchplatform_biologicalname` (
   PRIMARY KEY  (`id`),
   KEY `ResearchPlatform_biologicalname_6f33f001` (`category_id`),
   CONSTRAINT `category_id_refs_id_91adc771` FOREIGN KEY (`category_id`) REFERENCES `researchplatform_biologicalcategory` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_biologicalname
 -- ----------------------------
 INSERT INTO `researchplatform_biologicalname` VALUES ('1', '热带病', '1');
+INSERT INTO `researchplatform_biologicalname` VALUES ('2', '福寿螺', '2');
+INSERT INTO `researchplatform_biologicalname` VALUES ('3', '褐云玛瑙螺', '2');
+INSERT INTO `researchplatform_biologicalname` VALUES ('4', '白纹伊蚊', '3');
+INSERT INTO `researchplatform_biologicalname` VALUES ('5', '埃及伊蚊', '3');
+INSERT INTO `researchplatform_biologicalname` VALUES ('6', '锥虫', '4');
+INSERT INTO `researchplatform_biologicalname` VALUES ('7', '疟原虫', '4');
+INSERT INTO `researchplatform_biologicalname` VALUES ('8', '血吸虫', '4');
 
 -- ----------------------------
 -- Table structure for researchplatform_member
@@ -472,12 +483,19 @@ CREATE TABLE `researchplatform_project` (
   UNIQUE KEY `progress_id` (`progress_id`),
   CONSTRAINT `progress_id_refs_id_0caa3cec` FOREIGN KEY (`progress_id`) REFERENCES `researchplatform_projectprogress` (`id`),
   CONSTRAINT `biology_id_refs_id_dabeebea` FOREIGN KEY (`biology_id`) REFERENCES `researchplatform_biologicalname` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_project
 -- ----------------------------
-INSERT INTO `researchplatform_project` VALUES ('1', '热带医学是由热带病和公共卫生 2 部分组成，是研究发生或发现于热带、亚热带地区各种疾病的诊断、治疗、预防以及如何控制和消灭这些疾病的科学，是集基础医学、临床医学和预防医学为一体的综合性学科，涉及生物学、遗传学、寄生虫学、公共卫生学等多门交叉学科，既包括自然科学又包括社会科学。热带病一直是热带医学的研究重点，过去将热带病理解为寄生虫病，事实上，寄生虫病仅是热带病的重要组成部分，热带病还涉及许多由其他病原生物引起的感染性疾病。世界卫生组织认定了 8 种最重要、最常见的热带病：疟疾、血吸虫病、丝虫病、黑热病、锥虫病、麻风病、肺结核病和登革热，这些疾病是热带医学现在和今后研究的重点。\r\n世界经济和工业全球化进程的加快，全球气候的变暖，流动人口数量的急剧增加，皆使热带病发生的范围进一步扩大，同时，热带病防治中遇到的诸如贫穷、教育、初级卫生保健、传递系统、基础设施等制约热带病研究的问题仍然无法解决，因此，不仅要注重热带病的临床防治工作，还需要研究该病发生或流行与公共卫生意识与设施、环境条件及人们生活劳作习惯间的关系，是一项需要全民参与的社会工程。\r\n随着全球经济和科技的发展，社会的进步，很多热带病得到控制。但是，新发传染病不断涌现，一些原已控制的传染病仍有潜在流行趋势，不断关注新问题，努力探索热带病防治的新理念、诊断的新方法和提高治疗水平，是我们追求的目标。\r\n热带医学的研究现状世纪 70 年代以来，病原体生物学研究从细胞水平发展到基因水平，对细胞型病原体的抗生素类研发已经达到了成熟阶段，随着药理学先进技术和测试方法的应用，抗生素及化学药物治愈了许多传染性热带病疾病，化学性杀虫剂和消毒剂对节肢动物传播媒介和疫源地病原体进行有效杀灭和消毒，中断了传播环节，有效防治传染病。在免疫学领域内，用来预防不同传染病的新疫苗被发明，不但有控制白喉、脊髓灰质炎、麻疹等传染病的疫苗，而且也有效控制了须具传播媒介传播的黑热病、丝虫病、疟疾以及土源性和食源性寄生虫等疾病。\r\n分子生物学技术日新月异发展，使原始的病原检测发展为免疫学方法和核酸技术。基因探针和聚合酶链反应凭借快速、敏感性高、特异性强的特点，已经广泛用于病毒、细菌、寄生虫等的病原检测、药物敏感性实验、疗效监测和疾病流行病学研究中，先进的纳米技术和DNA 芯片逐渐应用于病毒和细菌的检测研究，DNA 疫苗的研制、转基因技术也在多项病毒抗原疫苗生产方面取得了进展。地理信息系统和遥感技术已经用于媒传疾病及媒介的监测，在疾病流行的早期监督和预警、危险地区的动态适时监测等方面发挥了极大作用。\r\n世纪初成立的英国皇家热带医学及卫生学会、澳大利亚寄生虫学会和美国热带医学学会均致力于促进和交流有关热带医学的研究、热带病的控制、治疗、预防等。我国近年来相继成立了多所热带医学研究所，如北京热带医学研究所、南方医科大学热带医学研究所、广州中医药大学热带医学研究所、海南热带病研究所等科研机构，在我国热带医学的临床与科研工作方面做出了突出的贡献。\r\n热带医学研究不可“高枕无忧预防传染病的疫苗不断研制应用，抗生素和杀虫剂的广泛开发使用，使传染病发病率和病死率已经维持相对稳定的低水平，于是很多人认为“传染病的问题已初步解决”或“人类与疾病斗争的重点应该转移至位居死因前列的非传染性慢性病方面”。事实上，由于近年来对自然疫源地的过度开发和对野生动物的滥杀，人类饮食习惯改变，气候、生态环境变化，抗生素和杀虫剂的滥用等多方面因素，促使病原物种变异，传染病疫情更加复杂，多种传染病仍未得到有效控制，且有进一步扩大流行趋势。例如血吸虫病、班氏丝虫病等寄生虫病流行于全世界 100 多个国家和地区，威胁 40％的地球人口，病毒病和细菌病等其他热带疾病发病迅猛，传染源、媒介昆虫活动途迁范围扩大，热带和非热带地区的传染病已很难严格区分，原已控制的传染病如疟疾、结核病等死灰复燃，重新肆虐人类。同时，也引发了一些新的人兽共患传染病，由于人群对新发现的传染病普遍易感，且无有效防治用药和措施，使病死率均高，人类面临着热带病新的严重挑战。2003 年在全球迅速扩散流行的急性传染性非典型肺炎(sARs)，虽然得到了及时控制并最后扑灭，但也说明需要时刻重视，不断加强公共卫生的防御系统及对突变疾病事件控制能力。热带病的侵袭对社会经济的发展和稳定产生极大破坏，对人类生存和发展构成严重威胁，是当今重大的公共卫生问题和社会问题。\r\n很多老的传染病被控制和消灭，新的传染病又被发现，人类消灭传染病的速度远远落后于新传染病出现的速度。热带病的防治任重而道远，我们应有保护全人类健康的长期性、艰巨性和复杂性的基本防制策略，对病原体病原学持续研究，研制有效的具有预防性和治疗性的免疫疫苗，不断及时发现新传染病，不断建立更敏感、特异的诊断技术。\r\n关注研究热点，展望未来发展趋势免疫预防工作将成为 21 世纪热带病防治工作的一个重要方面，HIV、囊虫病、疟疾、血吸虫病、弓形虫病、登革热、甲型和戊型肝炎作为现在主要影响我国人民健康的热带病，将成为攻关研究的重点，针对这些疾病研制重组疫苗、多肽疫苗、DNA 疫苗是今后的研究热点。\r\n随着分子生物学、细胞生物学、基因技术的飞速发展，后基因组学、比较基因组学和蛋白质组学的研究以及生物信息学、细胞微生物学将成为热带医学重要的研究手段；生物芯片技术研究重点将集中在感染性疾病诊断芯片、病原耐药谱监测芯片、遗传病检测和诊断芯片等，其应用前景十分广阔；利用最先进的纳米技术制造的生物传感器芯片，也将有利于今后的常规临床生化反应和代谢产物的检测；感染性疾病的基因工程疫苗的研究将全面走向开发应用，对肝炎、艾滋病、血吸虫病等的预防和治疗将起巨大的作用。\r\n\r\n在热带病的监测和防治方面，充分利用先进的监测技术，建立健全热带病监测评估体系和网络系统，对新发现和再出现传染病的全球监测系统是今后的发展趋势。进一步加强遥感技术和远程医疗技术的研究，将有利于提高疾病监测和防治水平刊，建立和分析各种生物体基因生命图谱，获取最根本原因证据，将有利于填补热带病防制措施和技术中的空白。\r\n中国传统医学在热带病防治中也将发挥重要的作用，将中西医结合、中药现代化等先进技术和理论运用于热带医学的研究中，使热带病的防治方法更新、更多、更有效，也将成为我国发展特色医疗优势的一个重要方面。国家应进一步加强疾病防治决策研究的力度，针对突发事件，不断总结经验，补充、完善具体方法，制定科学和明确的任务和措施。同时，加强健康教育与健康促进工作，普及卫生防病知识，动员社会全员参与，提高个人防护意识。将热带病的防治建成一个社会系统工程，也将成为今后我国热带医学发展的新策略。\r\n《东南哑热带病和卫生学杂志》社论指出：“社会进步、经济发展、文化提高、自我保健意识的建立，人类心理素质的增强，在控制传染病上发挥的作用比医学科学更加霞要。”改变热带病流行地区经济文化落后的现状，重视社会预防、康复医学、公共卫生教育，发展倡导全社会尊重、保护和爱护自然，达到人与自然的真正和谐，真正使热带病销声匿迹。', '1', '无', '1');
+INSERT INTO `researchplatform_project` VALUES ('1', '热带医学是由热带病和公共卫生 2 部分组成，是研究发生或发现于热带、亚热带地区各种疾病的诊断、治疗、预防以及如何控制和消灭这些疾病的科学，是集基础医学、临床医学和预防医学为一体的综合性学科，涉及生物学、遗传学、寄生虫学、公共卫生学等多门交叉学科，既包括自然科学又包括社会科学。热带病一直是热带医学的研究重点，过去将热带病理解为寄生虫病，事实上，寄生虫病仅是热带病的重要组成部分，热带病还涉及许多由其他病原生物引起的感染性疾病。世界卫生组织认定了 8 种最重要、最常见的热带病：疟疾、血吸虫病、丝虫病、黑热病、锥虫病、麻风病、肺结核病和登革热，这些疾病是热带医学现在和今后研究的重点。\r\n世界经济和工业全球化进程的加快，全球气候的变暖，流动人口数量的急剧增加，皆使热带病发生的范围进一步扩大，同时，热带病防治中遇到的诸如贫穷、教育、初级卫生保健、传递系统、基础设施等制约热带病研究的问题仍然无法解决，因此，不仅要注重热带病的临床防治工作，还需要研究该病发生或流行与公共卫生意识与设施、环境条件及人们生活劳作习惯间的关系，是一项需要全民参与的社会工程。\r\n随着全球经济和科技的发展，社会的进步，很多热带病得到控制。但是，新发传染病不断涌现，一些原已控制的传染病仍有潜在流行趋势，不断关注新问题，努力探索热带病防治的新理念、诊断的新方法和提高治疗水平，是我们追求的目标。\r\n热带医学的研究现状世纪 70 年代以来，病原体生物学研究从细胞水平发展到基因水平，对细胞型病原体的抗生素类研发已经达到了成熟阶段，随着药理学先进技术和测试方法的应用，抗生素及化学药物治愈了许多传染性热带病疾病，化学性杀虫剂和消毒剂对节肢动物传播媒介和疫源地病原体进行有效杀灭和消毒，中断了传播环节，有效防治传染病。在免疫学领域内，用来预防不同传染病的新疫苗被发明，不但有控制白喉、脊髓灰质炎、麻疹等传染病的疫苗，而且也有效控制了须具传播媒介传播的黑热病、丝虫病、疟疾以及土源性和食源性寄生虫等疾病。\r\n分子生物学技术日新月异发展，使原始的病原检测发展为免疫学方法和核酸技术。基因探针和聚合酶链反应凭借快速、敏感性高、特异性强的特点，已经广泛用于病毒、细菌、寄生虫等的病原检测、药物敏感性实验、疗效监测和疾病流行病学研究中，先进的纳米技术和DNA 芯片逐渐应用于病毒和细菌的检测研究，DNA 疫苗的研制、转基因技术也在多项病毒抗原疫苗生产方面取得了进展。地理信息系统和遥感技术已经用于媒传疾病及媒介的监测，在疾病流行的早期监督和预警、危险地区的动态适时监测等方面发挥了极大作用。\r\n世纪初成立的英国皇家热带医学及卫生学会、澳大利亚寄生虫学会和美国热带医学学会均致力于促进和交流有关热带医学的研究、热带病的控制、治疗、预防等。我国近年来相继成立了多所热带医学研究所，如北京热带医学研究所、南方医科大学热带医学研究所、广州中医药大学热带医学研究所、海南热带病研究所等科研机构，在我国热带医学的临床与科研工作方面做出了突出的贡献。\r\n热带医学研究不可“高枕无忧预防传染病的疫苗不断研制应用，抗生素和杀虫剂的广泛开发使用，使传染病发病率和病死率已经维持相对稳定的低水平，于是很多人认为“传染病的问题已初步解决”或“人类与疾病斗争的重点应该转移至位居死因前列的非传染性慢性病方面”。事实上，由于近年来对自然疫源地的过度开发和对野生动物的滥杀，人类饮食习惯改变，气候、生态环境变化，抗生素和杀虫剂的滥用等多方面因素，促使病原物种变异，传染病疫情更加复杂，多种传染病仍未得到有效控制，且有进一步扩大流行趋势。例如血吸虫病、班氏丝虫病等寄生虫病流行于全世界 100 多个国家和地区，威胁 40％的地球人口，病毒病和细菌病等其他热带疾病发病迅猛，传染源、媒介昆虫活动途迁范围扩大，热带和非热带地区的传染病已很难严格区分，原已控制的传染病如疟疾、结核病等死灰复燃，重新肆虐人类。同时，也引发了一些新的人兽共患传染病，由于人群对新发现的传染病普遍易感，且无有效防治用药和措施，使病死率均高，人类面临着热带病新的严重挑战。2003 年在全球迅速扩散流行的急性传染性非典型肺炎(sARs)，虽然得到了及时控制并最后扑灭，但也说明需要时刻重视，不断加强公共卫生的防御系统及对突变疾病事件控制能力。热带病的侵袭对社会经济的发展和稳定产生极大破坏，对人类生存和发展构成严重威胁，是当今重大的公共卫生问题和社会问题。\r\n很多老的传染病被控制和消灭，新的传染病又被发现，人类消灭传染病的速度远远落后于新传染病出现的速度。热带病的防治任重而道远，我们应有保护全人类健康的长期性、艰巨性和复杂性的基本防制策略，对病原体病原学持续研究，研制有效的具有预防性和治疗性的免疫疫苗，不断及时发现新传染病，不断建立更敏感、特异的诊断技术。\r\n关注研究热点，展望未来发展趋势免疫预防工作将成为 21 世纪热带病防治工作的一个重要方面，HIV、囊虫病、疟疾、血吸虫病、弓形虫病、登革热、甲型和戊型肝炎作为现在主要影响我国人民健康的热带病，将成为攻关研究的重点，针对这些疾病研制重组疫苗、多肽疫苗、DNA 疫苗是今后的研究热点。\r\n随着分子生物学、细胞生物学、基因技术的飞速发展，后基因组学、比较基因组学和蛋白质组学的研究以及生物信息学、细胞微生物学将成为热带医学重要的研究手段；生物芯片技术研究重点将集中在感染性疾病诊断芯片、病原耐药谱监测芯片、遗传病检测和诊断芯片等，其应用前景十分广阔；利用最先进的纳米技术制造的生物传感器芯片，也将有利于今后的常规临床生化反应和代谢产物的检测；感染性疾病的基因工程疫苗的研究将全面走向开发应用，对肝炎、艾滋病、血吸虫病等的预防和治疗将起巨大的作用。\r\n\r\n在热带病的监测和防治方面，充分利用先进的监测技术，建立健全热带病监测评估体系和网络系统，对新发现和再出现传染病的全球监测系统是今后的发展趋势。进一步加强遥感技术和远程医疗技术的研究，将有利于提高疾病监测和防治水平刊，建立和分析各种生物体基因生命图谱，获取最根本原因证据，将有利于填补热带病防制措施和技术中的空白。\r\n中国传统医学在热带病防治中也将发挥重要的作用，将中西医结合、中药现代化等先进技术和理论运用于热带医学的研究中，使热带病的防治方法更新、更多、更有效，也将成为我国发展特色医疗优势的一个重要方面。国家应进一步加强疾病防治决策研究的力度，针对突发事件，不断总结经验，补充、完善具体方法，制定科学和明确的任务和措施。同时，加强健康教育与健康促进工作，普及卫生防病知识，动员社会全员参与，提高个人防护意识。将热带病的防治建成一个社会系统工程，也将成为今后我国热带医学发展的新策略。\r\n《东南哑热带病和卫生学杂志》社论指出：“社会进步、经济发展、文化提高、自我保健意识的建立，人类心理素质的增强，在控制传染病上发挥的作用比医学科学更加霞要。”改变热带病流行地区经济文化落后的现状，重视社会预防、康复医学、公共卫生教育，发展倡导全社会尊重、保护和爱护自然，达到人与自然的真正和谐，真正使热带病销声匿迹。', '1', '暂无', '1');
+INSERT INTO `researchplatform_project` VALUES ('2', '福寿螺，瓶螺科瓶螺属软体动物，外观与田螺极其相似，个体大、食性广、适应性强、生长繁殖快、产量高。食用未充分加热的福寿螺，可能引起广州管圆线虫等寄生虫在人体内感染。1981年引入中国，目前已被列入中国首批外来入侵物种。\r\n其肉质可食用，但口感不佳，并不为人们喜爱。另外，它还是一些珍贵水产动物的饲料。福寿螺个体大、食性广、适应性强、生长繁殖快、产量高，中国各地均有养殖。食用未充分加热的福寿螺，可能引起广州管圆线虫等寄生虫在人体内感染。食用生的或加热不彻底的福寿螺后即可被感染，可引起头痛、发热、颈部僵硬等症状，严重者可致痴呆，甚至死亡。因此，食用福寿螺时一定要注意彻底加热。', '2', '暂无', '4');
+INSERT INTO `researchplatform_project` VALUES ('3', '褐云玛瑙螺一般指非洲大蜗牛\r\n非洲大蜗牛（学名：Achatina fulica）是中大型的陆栖蜗牛。成体壳长一般为7～8厘米，最大则可长到超过20厘米。夜行性，杂食性，大多是在潮湿环境中活动，喜欢在下雨及夜间出没。平时躲在阴凉的地方，且在壳口上做一层白膜（假口盖），只余一个小孔来呼吸，将螺肉缩入壳内以防脱水，等到环境转好后再出来。\r\n食物包括农作物、林木、果树、蔬菜、花卉等植物，饥饿时也取食纸张和同伴尸体，甚至能啃食和消化水泥，可危害500多种作物。该物种是许多人畜寄生虫和病原菌的中间宿主，尤其是传播结核病和嗜酸性脑膜炎，食用则危害极大。非洲大蜗牛一次可以产下30到700粒卵，繁殖很快。\r\n是中国首批16种外来入侵物种之一，列入《中国外来入侵物种名单》。对蔬菜等农作物危害极大，系中国国家进出境二类检疫性有害生物。', '3', '暂无', '5');
+INSERT INTO `researchplatform_project` VALUES ('4', '白纹伊蚊（学名：Aedes albopictus，英文名称：Aedes albopictus）也被称为亚洲虎蚊，属于长角亚目蚊科，中等大小的黑色蚊虫，上面并具由白色鳞片形成的斑纹，[1]  白纹伊蚊源于东南亚，是东南亚和中国的常见蚊种。[2] \r\n白纹伊蚊既是一种攻击性很强的蚊子，也是一种重要的病毒媒介，它可以传播很多病原体，包括登革热、罗斯河病毒和西尼罗病毒。白纹伊蚊多滋生在居民点及其周围的容器(如缸、罐、盆、碗、破瓶等)和植物容器(如竹筒、树洞、叶腋等)以及石穴等小型积水，轮胎积水更是这种伊蚊最普通的滋生场所。[3] \r\n白纹伊蚊的卵具有很强的抗寒能力和生命力，易于被携带传播，使得白纹伊蚊能够侵袭入新领地，并发展为优势蚊种，[3]  成为过去20年间全球扩散速度最快的100种物种之一。已从起源地亚洲扩散至全球70多个国家。', '4', '暂无', '7');
+INSERT INTO `researchplatform_project` VALUES ('5', '埃及伊蚊是一种中小型黑色蚊种，有银白色斑纹。\r\n埃及伊蚊是引发“登革热”的祸首。2006年9月，海口港检验检疫办事处人员在对一艘入境的越南籍船舶实施卫生监督时，发现船尾甲板上的一只旧铁桶内有积水，里头有大量幼蚊、虫卵及幼虫。工作人员及时对这些幼蚊进行蚊种技术鉴定，证实了这些虫子是传播“登革热”的主要生物媒介。\r\n2016年3月，安哥拉爆发黄热病疫情，黄热病属于蚊媒传播疾病，主要通过埃及伊蚊叮咬感染。', '5', '暂无', '8');
+INSERT INTO `researchplatform_project` VALUES ('6', '锥虫是一种血鞭毛原虫，约有20几种。寄生于鱼类、两栖类、爬虫类、鸟类、哺乳类以及人的血液或组织细胞内。寄生于人的锥虫依其感染途径可分为两大类，即通过唾液传播的涎源性锥虫与通过粪便传播的粪源性锥虫。由锥虫属的原虫引起的一种鞭毛虫病。主要侵袭马（驴、骡）、牛和骆驼等，寄生于血液或生殖器粘膜内。人和一些野生动物也可感染。家畜中以伊氏锥虫病和马媾疫为害较大。\r\n', '6', '暂无', '9');
+INSERT INTO `researchplatform_project` VALUES ('7', '疟原虫为按蚊传播的孢子虫，是疟疾（malaria）的病原体。寄生于人体的疟原虫有四种，即间日疟原虫（Plasmodium vivax Grassi & Feletti,1890）、三日疟原虫（Plasmodium malariae Laveran,1881）、恶性疟原虫（Plasmodium falciparum Welch,1897）和卵形疟原虫（Plasmodium ovale Stephens，1922）。[1] \r\n这些疟原虫有蚊虫和人两个宿主，包括蚊体内的有性繁殖和人体内的无性增殖，携带疟原虫的按蚊通过叮咬人而传播，引起疟疾寒热往来发作，俗称“打摆子”。而其他种类的疟原虫会感染它种动物，包括其他灵长目动物、啮齿目动物、鸟类及爬虫类。', '7', '暂无', '10');
+INSERT INTO `researchplatform_project` VALUES ('8', '血吸虫也称裂体吸虫（schistosoma）。血吸虫寄生于多数脊椎动物，卵穿过静脉壁进入膀胱，随尿排出。幼虫在中间宿主螺类(主要为Bulinus属和Physopsis属)体内发育。成熟幼虫通过皮肤或口进入终宿主体内。曼森氏裂体吸虫(S. mansoni, 即曼氏血吸虫)在大、小肠静脉中，主要分布于非洲和南美洲北部。卵随粪便排出。幼虫进入螺体，再通过皮肤回到终宿主体内。日本裂体吸虫(S. japonicum, 即日本血吸虫)主要见于中国大陆、日本、台湾、东印度群岛和菲律宾，除人外，还侵袭其他脊椎动物，如家畜和大鼠等。\r\n寄生于人体的血吸虫在形态、生理和生活史等方面，有许多不同于其它人体寄生吸虫，如血吸虫系雌雄异体；成虫在肠系膜静脉或膀胱静脉丛寄生，虫卵从粪或尿中排出，因虫种而异；尾蚴的尾部分叉，在水中经皮肤侵入宿主；生活史中无雷蚴和囊蚴阶段。兹以日本血吸虫为例，作较详细叙述，并扼要介绍曼氏血吸虫和埃及血吸虫。血吸虫，古代文献称“蛊”或“水蛊”，多因皮肤接触了有血吸虫幼虫的疫水而感染。隋·巢元方等《诸病源候论·水蛊候》云：“此由水毒气结聚于内，令腹渐大……名水蛊也。”感染后，初期可见发热恶寒、咳嗽、胸痛等；日久则以胁下症块，臌胀腹水等为特征，后果较严重。', '8', '暂无', '11');
 
 -- ----------------------------
 -- Table structure for researchplatform_projectprogress
@@ -488,12 +506,19 @@ CREATE TABLE `researchplatform_projectprogress` (
   `content` longtext NOT NULL,
   `abstract` longtext NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_projectprogress
 -- ----------------------------
-INSERT INTO `researchplatform_projectprogress` VALUES ('1', '进行中', '无');
+INSERT INTO `researchplatform_projectprogress` VALUES ('1', '进度10%', '热带医学');
+INSERT INTO `researchplatform_projectprogress` VALUES ('4', '进度20%', '福寿螺');
+INSERT INTO `researchplatform_projectprogress` VALUES ('5', '进度20%', '褐云玛瑙螺');
+INSERT INTO `researchplatform_projectprogress` VALUES ('7', '进度30%', '白纹伊蚊');
+INSERT INTO `researchplatform_projectprogress` VALUES ('8', '进度50%', '埃及伊蚊');
+INSERT INTO `researchplatform_projectprogress` VALUES ('9', '进度60%', '锥虫');
+INSERT INTO `researchplatform_projectprogress` VALUES ('10', '进度40%', '疟原虫');
+INSERT INTO `researchplatform_projectprogress` VALUES ('11', '进度30%', '血吸虫');
 
 -- ----------------------------
 -- Table structure for researchplatform_project_publisharticles
@@ -509,7 +534,7 @@ CREATE TABLE `researchplatform_project_publisharticles` (
   KEY `ResearchPlatform_project_publishArticles_e669cc35` (`article_id`),
   CONSTRAINT `article_id_refs_id_bf8a977c` FOREIGN KEY (`article_id`) REFERENCES `researchplatform_article` (`id`),
   CONSTRAINT `project_id_refs_id_09909b28` FOREIGN KEY (`project_id`) REFERENCES `researchplatform_project` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_project_publisharticles
@@ -524,6 +549,13 @@ INSERT INTO `researchplatform_project_publisharticles` VALUES ('7', '1', '7');
 INSERT INTO `researchplatform_project_publisharticles` VALUES ('8', '1', '8');
 INSERT INTO `researchplatform_project_publisharticles` VALUES ('9', '1', '9');
 INSERT INTO `researchplatform_project_publisharticles` VALUES ('10', '1', '10');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('11', '2', '1');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('12', '3', '2');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('13', '4', '2');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('14', '5', '3');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('15', '6', '3');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('16', '7', '3');
+INSERT INTO `researchplatform_project_publisharticles` VALUES ('17', '8', '3');
 
 -- ----------------------------
 -- Table structure for researchplatform_project_relatedarticles
@@ -539,11 +571,19 @@ CREATE TABLE `researchplatform_project_relatedarticles` (
   KEY `ResearchPlatform_project_relatedArticles_e669cc35` (`article_id`),
   CONSTRAINT `article_id_refs_id_03361aad` FOREIGN KEY (`article_id`) REFERENCES `researchplatform_article` (`id`),
   CONSTRAINT `project_id_refs_id_d54f28a0` FOREIGN KEY (`project_id`) REFERENCES `researchplatform_project` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_project_relatedarticles
 -- ----------------------------
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('1', '2', '1');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('2', '3', '8');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('3', '4', '10');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('4', '5', '1');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('5', '6', '3');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('6', '7', '3');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('7', '8', '8');
+INSERT INTO `researchplatform_project_relatedarticles` VALUES ('8', '8', '9');
 
 -- ----------------------------
 -- Table structure for researchplatform_team
@@ -560,7 +600,7 @@ CREATE TABLE `researchplatform_team` (
 -- ----------------------------
 -- Records of researchplatform_team
 -- ----------------------------
-INSERT INTO `researchplatform_team` VALUES ('1', '中大团队', '1', '');
+INSERT INTO `researchplatform_team` VALUES ('1', '热带医学团队', '1', '研究方向一：以疟原虫为主的热带病原学基础研究\r\n开展对疟原虫、恙虫立克次体等的病原分子医学研究。其主要任务是利用Genbank中已知的基因序列和生物信息学手段，筛选可能的靶基因并鉴定其功能，掌握病原体在环境和药物选择压力下的基因的变异规律，病原体与宿主（人和储蓄宿主）相互作用的分子机制（致病和免疫的分子机制），为研制新的治疗药物、诊断试剂和基因疫苗的开发与研制奠定坚实的基础。\r\n研究方向二：热带病诊断和病原鉴别技术的开发及应用研究\r\n热带病诊断和病原鉴别技术是热带病防治的基础技术，在临床诊断、疗效判定和流行病学调查中均具有重要的作用。热带病（原学）重点实验室除了要充分掌握和利用现有成熟的热带病基本诊断和病原鉴别技术外，还要不断地跟踪国内外的研究进展，不断地将新技术移植应用于基础研究的同时，积极探讨其临床实际应用的可行性。重点利用分子生物学、基因组学、蛋白质组学、免疫学、细胞生物学和现代组织（免疫）病理技术的方法和手段寻找热带病诊断和治疗的新的靶点，争取研究开发出具有自主知识产权的热带病诊断和病原鉴别技术，并将这些技术应用于临床和流行病学研究。努力争取将实验室建设成为具有发现、诊断和鉴定新的热带病病原能力的国内权威实验室。\r\n研究方向三：热带病病原和虫媒载体耐药机理研究\r\n热带病病原对治疗药物耐药和虫媒载体对各种杀虫剂耐药是导致疟疾等热带病难以控制的另一主要因素。在这一研究领域，实验室将主要应用分子生物学、基因组学、分子免疫学的方法和手段，从分子水平研究热带病病原和虫媒载体的耐药机理，进而寻找治疗和干预热带病病原和虫媒载体耐药的新方法。\r\n研究方向四：热带病疫苗的开发研制和应用研究\r\n当前研究者普遍认为，疫苗是防治热带病最安全、廉价和有效的手段。但时至今日，在热带病疫苗特别是疟疾疫苗研究方面，尽管国际社会投入了大量的人力、财力和物力，科学家进行了大量的研究工作，至今尚没有研制和生产出任何明确具有临床防治效果的疫苗。因此，在热带病疫苗开发方面也有许多研究空白。热带病原生物学重点实验室将充分利用分子生物学、免疫学、细胞生物学和当代先进的生物技术方法和手段，除了寻找有效诱导宿主免疫系统对热带病病原体的细胞和体液免疫反应的载体和佐剂，解决传统疫苗免疫效价过低，持续时间不长等传统疫苗策略的不足之处以外，还要采用新的构建和制备疫苗技术和策略重点开发疟疾、登革热、立克次体等热带病防治疫苗。\r\n研究方向五：热带病相关多肽药物的开发和应用研究\r\n多肽是涉及生物体内各种细胞功能的生物活性物质，几乎所有细胞都受多肽的调节，它涉及激素分泌、神经、细胞生长和生殖等各个领域。研究体内分泌的多肽对疾病发病和转归等方面的影响，不仅有助于增进对人体生理及病理生理过程的认识，也将为临床诊断和治疗疾病提供理论依据，而且还有助于发现一些与疾病相关的新的蛋白质。热带病（原学）重点实验室将从分子、细胞生物学的角度重点寻找海洋生物及热带病原宿主体内分泌的活性多肽，争取发现数个具有防治热带病活性的多肽物质，进而探讨这些多肽在热带病发病和转归中的作用机理，为热带病的防治寻找新的方法和策略。\r\n研究方向六：热带病病理学及诊断技术及防治措施的研究\r\n热带病是以生物性致病因子为主引起的疾病，是热带地区的多发病和特有疾病。2003年在广东地区出现并迅速漫延至全国、全球的传染性非典型肺炎（SARS），以及2004年初全球范围内禽流感的流行，给我国和世界人民造成巨大的灾难，这些疾病的爆发给广大科研工作者敲响了警钟：必须高度重视传染性疾病的防治研究工作。尽管海南在这两次流行中幸免波及，但决不能掉以轻心。探寻敏感、特异、迅速、准确、定量的传染性疾病的诊断技术对于有效控制传染性疾病的爆发流行至关重要。我们将在在病原分子医学研究的基础上，进行病毒感染的分子生物学诊断、细胞模型、抗病毒治疗及疗效评价的研究；对已知病原体如疟原虫、乙型肝炎病毒、恙虫病立克次体、粪类园线虫、猪囊尾蚴、曼氏裂头蚴、肝吸虫、弓形虫、肺孢子虫、隐孢子虫、艾滋病毒、冠状病毒等建立或引进简便、快速、敏感、特异的免疫检测和基因检测新技术，建立技术标准、研发商品化检测试剂盒，建立常见热带病诊断方法及防治措施，研究开发基因疫苗。\r\n研究方向七：热带病预防与控制的研究\r\n开展热带病原的对外检测服务，并提供专业性治疗建议。对省内各人群上述各种人体寄生虫和其他传染性疾病的流行病学调查，填补省内的有关方面资料空白，为有关机构提供准确的流行病学数据。同时开展预防与控制的相关研究。开展艾滋病和结核病的预防与控制措施和策略研究，重点研究艾滋病和结核病的诊断与筛查，预防与教育与干预方法等应用研究。\r\n研究方向八：研究我省黎族高发疾病与热带病的关系\r\n重点研究我省疟疾区人群一些基因变异与疟疾抵抗性的关系，阐明疟疾抵抗性的遗传基础及一些基因的进化在疟疾流行过程中的作用。');
 
 -- ----------------------------
 -- Table structure for researchplatform_team_publisharticles
