@@ -29,8 +29,8 @@ def form(request):
 
 def index(request):
 	result = dict()
-	news = Announcement.objects.filter(type=0).order_by("submittime")[:3]
-	notices = Announcement.objects.filter(type=1).order_by("submittime")[:3]
+	news = Announcement.objects.filter(type="News").order_by("submittime")[:3]
+	notices = Announcement.objects.filter(type="Notice").order_by("submittime")[:3]
 	result["news"] = news
 	result["notices"] = notices
 	return render_to_response("index.html", result, context_instance=RequestContext(request))
@@ -42,7 +42,7 @@ def Teams(request):
 	print teams
 	return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams}, context_instance=RequestContext(request))
 
-def Member(request, id):
+def Members(request, id):
 	response_data = dict()
 	member = Member.objects.filter(id = int(id))
 	if len(member) == 0:
@@ -186,7 +186,8 @@ def Detail(request, type, id):
 	response_data = {}	
 	if len(announcement) > 0:
 		response_data["result"] = "success"
-		response_data["message"] = announcement[0].toDict()		
+		response_data["message"] = announcement[0].toDict()	
+		print response_data	
 		return HttpResponse(json.dumps(response_data), content_type = "application/json")
 	else:
 		response_data["result"] = "fail"
