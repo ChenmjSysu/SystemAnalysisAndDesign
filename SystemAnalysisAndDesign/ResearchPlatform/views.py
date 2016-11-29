@@ -34,7 +34,6 @@ def index(request):
 	result["news"] = news
 	result["notices"] = notices
 	result["header"] = "header"
-	print RequestContext(request)
 	return render_to_response("index.html", result, context_instance=RequestContext(request))
 
 def Teams(request, id="1"):
@@ -264,7 +263,7 @@ def Delete(request, type):
 				response_data["message"] = "%s with id %s is not found" % (type, aid)
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			else:
-				# announcement.delete()
+				announcement.delete()
 				response_data["result"] = "success"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 		else:

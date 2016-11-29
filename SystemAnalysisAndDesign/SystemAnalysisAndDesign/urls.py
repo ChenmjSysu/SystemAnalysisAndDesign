@@ -41,11 +41,13 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html")),
     url(r'^add/(\w+)', "Add"),
     url(r'^list/(\w+)', "List"),
+    url(r'^showList/$', TemplateView.as_view(template_name="list.html")),
     url(r'^manage/$', "Manage"),
     url(r'^delete/(\w+)', "Delete"),    
     url(r'^form/$', "form"),
     url(r'^dataTool/$', "DataTools"),
     url(r'^(\w+)/(\d+)/', "Detail"), 
+    url(r'^showDetail/$', TemplateView.as_view(template_name="detail.html")),
 )
 
 urlpatterns += patterns("",
