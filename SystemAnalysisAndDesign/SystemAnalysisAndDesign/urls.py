@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns("ResearchPlatform.views",
+    url(r'^analysis/$', TemplateView.as_view(template_name="analysis.html")),
     url(r'^$', "index"),
 	url(r'^index/$', "index"),
 	url(r'^login/$', "login"),

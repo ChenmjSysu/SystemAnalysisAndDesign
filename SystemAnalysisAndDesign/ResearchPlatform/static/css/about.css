@@ -46,7 +46,8 @@
 }
 .part{
 	border-bottom: solid 1px #218868;
-	text-align: left
+	text-align: left;
+    line-height: 30px;
 }
 .part:last-child{
 	border:none;
@@ -58,6 +59,7 @@
     font-size: 20px;
     margin-top: 30px;
     color: darkgreen;
+    margin-bottom: 15px;
 }
 
 

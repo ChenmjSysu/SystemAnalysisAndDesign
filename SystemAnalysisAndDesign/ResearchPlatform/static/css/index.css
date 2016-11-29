@@ -74,6 +74,13 @@
   padding-bottom: 5px;
   background-color: #F8F8FF;
   padding: 15px;
+  line-height: 30px;
+}
+.panel-body li{
+  margin:10px 0;
+}
+.panel-body li:hover{
+  text-decoration: underline;
 }
 /*--------------------------panel ENDS--------------------------*/
 
@@ -83,7 +90,9 @@
 .news-ul, .notification-ul {
     padding: 0px 0px;
 }
-
+ul {
+  margin: 0;
+}
 .news-ul li, .notification-ul li {
   line-height: 25px;
   font-size: 15px;

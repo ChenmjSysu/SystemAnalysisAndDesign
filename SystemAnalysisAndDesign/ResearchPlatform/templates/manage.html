@@ -1,16 +1,8 @@
 {% extends 'part/base.html' %}
 
 {% block head %}
-  <link href="/static/css/publishedArticles.css" rel="stylesheet">
+  <link href="/static/css/manage.css" rel="stylesheet">
   <script src="/static/js/manage.js"></script>
-  <style>
-    td {
-        text-align: left;
-    }
-    a {
-        cursor: pointer;
-    }
-  </style>
 {% endblock %}
 
  
@@ -19,21 +11,20 @@
 {% block content %}
     {%  include 'part/header.html' %}
     <div id='container'>
-        <table>
-            <tbody>
-                {% for term in news%}
-                <tr>
-                    <td><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></td>
-                    <td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
-                </tr>
+        <div class='listType'>新闻动态</div>
+        <div class='list'>
+            {% for term in news%}
+                <div class='li'>
+                    <div class='title'><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></div>
+                    <div class='btn'>删除</div>
+                </div>
                 {% endfor %}      
                 {% for term in notice%}
-                <tr>
-                    <td>{{term.title}}</td><td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
-                </tr>
-                {% endfor %}    
-            </tbody>
-        </table>
-        
+                <div class='li'>
+                    <div class='title'><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></div>
+                    <div class='btn'>删除</div>
+                </div>
+            {% endfor %}    
+        </div>
     </div>
 {% endblock %}

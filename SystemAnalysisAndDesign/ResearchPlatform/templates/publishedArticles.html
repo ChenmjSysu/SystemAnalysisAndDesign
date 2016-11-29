@@ -11,6 +11,7 @@
 {% block content %}
     {%  include 'part/header.html' %}
     <div id='container'>
+        <div class='title'>发表的文章</div>
     	<table>
     		<tbody>
                 {% for term in result %}
@@ -76,4 +77,5 @@
     		</tbody>
     	</table>
     </div>
+  <script type="text/javascript" src='../static/js/publishedArticles.js'></script>
 {% endblock %}

@@ -1,4 +1,10 @@
 $(document).ready(function(){
+	for(var i=0;i<$('.list .li').length;i++){
+		$('.list .li').eq(i).css({
+			animation:(i+1)*0.5+'s fade'
+		})
+	}
+
     //点击索引
 	$(".term").click(function(e) {
 		id = $(e.target).attr("recordId");

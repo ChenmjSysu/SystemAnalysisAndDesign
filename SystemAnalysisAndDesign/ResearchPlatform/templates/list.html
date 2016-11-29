@@ -1,0 +1,43 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="/static/css/list.css" rel="stylesheet">
+  <!-- <script type="text/javascript" src='../static/js/about.js'></script> -->
+{% endblock %}
+
+ 
+{% block title %}新闻动态{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+    	<div class='listType'>新闻动态</div>
+    	<div class='list'>
+    		<a class='li' href='/showDetail'>
+    			<div class='icon'></div>
+    			<div class='title'>【我是文章标题啊】</div>
+    			<div class='author'>纪云</div>
+    			<div class='date'>2016-11-29 15:01:41</div>
+    		</a>
+    		<a class='li' href='/showDetail'>
+    			<div class='icon'></div>
+    			<div class='title'>【我是文章标题啊】</div>
+    			<div class='author'>纪云</div>
+    			<div class='date'>2016-11-29 15:01:41</div>
+    		</a>
+    		<a class='li' href='/showDetail'>
+    			<div class='icon'></div>
+    			<div class='title'>【我是文章标题啊】</div>
+    			<div class='author'>纪云</div>
+    			<div class='date'>2016-11-29 15:01:41</div>
+    		</a>
+    		<a class='li' href='/showDetail'>
+    			<div class='icon'></div>
+    			<div class='title'>【我是文章标题啊】</div>
+    			<div class='author'>纪云</div>
+    			<div class='date'>2016-11-29 15:01:41</div>
+    		</a>
+    	</div>
+    </div>
+  <script type="text/javascript" src='../static/js/list.js'></script>
+{% endblock %}

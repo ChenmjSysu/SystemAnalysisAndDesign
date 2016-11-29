@@ -1,0 +1,22 @@
+#container{
+	width:1000px;
+	margin:30px auto;
+}
+h2{
+	text-align: center;
+    border-bottom: solid 3px green;
+    line-height: 60px;
+    margin: 0;
+}
+.infos{
+	color: gray;
+	font-size: 12px;
+	text-align: center;
+}
+.infos span{
+	display:inline-block;
+	margin:10px 20px;
+}
+.content p{
+	text-indent: 2em;
+}

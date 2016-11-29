@@ -1,0 +1,26 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="/static/css/detail.css" rel="stylesheet">
+  <!-- <script type="text/javascript" src='../static/js/about.js'></script> -->
+{% endblock %}
+
+ 
+{% block title %}文章标题 新闻详情{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+    	<div class='head'>
+    		<h2>文章标题</h2>
+    		<div class='infos'>
+    			<span>作者：纪云</span>
+    			<span>发表时间：2016-11-29 15:01:41</span>
+    		</div>
+    	</div>
+    	<div class='content'>
+    		<p>这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容</p>
+    		<p>这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容</p>
+    	</div>
+    </div>
+{% endblock %}

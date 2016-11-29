@@ -153,3 +153,7 @@ footer .col-sm-6.col-sm-offset-3 {
     line-height: 14px;
     padding: 10px 0;
 }
+@keyframes fade{
+    0% {opacity: 0},
+    100% {opacity:1;}
+}

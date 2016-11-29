@@ -4,6 +4,23 @@
     text-align: center;
     margin-top: 50px;
 }
+.title{
+    font-size: 18px;
+    border-bottom: solid 3px green;
+    line-height: 45px;
+    text-indent: 10px;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-top: -15px;
+    text-align: left;
+}
+tr{
+    position:relative;
+}
+tr.tr{
+    position:absolute;
+}
 td.short{
 	width:200px;
     border-top: dashed 1px #218868;

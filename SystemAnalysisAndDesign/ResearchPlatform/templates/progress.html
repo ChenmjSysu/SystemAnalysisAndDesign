@@ -57,7 +57,7 @@
     			</div>
     		</div> -->
     	</div>
-    	<div id='container_right'>
+    	<div id='container_right' >
             <!-- <p>此板块的左侧边栏与“关于项目”板块的左侧边栏样式、内容完全一致。当点击某一物种的名称（即目录的二级标题）时，板块的右侧主体部分以文字、图片、链接等形式展示与该物种相关的项目进展</p>
     		<div class='part'>
     			<div class='part_title'>项目一</div>
@@ -71,7 +71,9 @@
                     <p>XXXXXXXXX</p>
                 </div>
             </div> -->
+            <div class='slider' length={{biologicalName.project.progress.content|safe}}><div></div></div>
             {{biologicalName.project.progress.content|safe}}
     	</div>
     </div>
+  <script type="text/javascript" src='/static/js/progress.js'></script>
 {% endblock %}

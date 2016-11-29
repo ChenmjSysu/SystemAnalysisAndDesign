@@ -63,6 +63,7 @@ h3.article_title {
 }
 .article_content{
     text-align: left;
+    line-height: 28px;
 }
 .article_content p{
     text-indent: 2em;
