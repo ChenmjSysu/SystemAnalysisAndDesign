@@ -35,9 +35,9 @@ urlpatterns += patterns("ResearchPlatform.views",
     url(r'^add/(\w+)', "Add"),
     url(r'^list/(\w+)', "List"),
     url(r'^delete/(\w+)', "Delete"),
-    url(r'^(\w+)/(\d+)/', "Detail"),    
-    url(r'^mamber/(\d+)/', "Members"),    
+    url(r'^member/(\d+)/', "Members"),
     url(r'^form/$', "form"),
+    url(r'^(\w+)/(\d+)/', "Detail"),
 )
 
 urlpatterns += patterns("",

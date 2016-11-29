@@ -10,10 +10,11 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2016-11-29 01:42:15
+Date: 2016-11-29 13:28:58
 */
 
-CREATE DATABASE IF NOT EXISTS researchplatform default character set utf8; 
+
+CREATE DATABASE IF NOT EXISTS researchplatform default character set utf8;
 use researchplatform;
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -172,7 +173,7 @@ CREATE TABLE `auth_user` (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$10000$r6SQ1UvhM7h1$kwo/ZlWSAf7+BclqIdrTAN4FFaVcWgAurXcrCNisf3o=', '2016-11-27 14:30:43', '1', 'fuhuamosi', '', '', '', '1', '1', '2016-11-27 14:29:33');
+INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$10000$r6SQ1UvhM7h1$kwo/ZlWSAf7+BclqIdrTAN4FFaVcWgAurXcrCNisf3o=', '2016-11-29 02:59:46', '1', 'fuhuamosi', '', '', '', '1', '1', '2016-11-27 14:29:33');
 INSERT INTO `auth_user` VALUES ('2', 'pbkdf2_sha256$10000$vPKNgwin0rRx$lGnJp1lffTJ3n/XaBDTiv2WkyzuEbzkAOf/Uq4Eb0oE=', '2016-11-28 04:18:55', '0', 'fuyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:18:55');
 INSERT INTO `auth_user` VALUES ('3', 'pbkdf2_sha256$10000$FdnPjyz0LOqt$OgF6EtGFYGsgonOhfUH+73J92wa3V3aD+jdMBoLI7AM=', '2016-11-28 04:20:25', '0', 'chenyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:20:25');
 INSERT INTO `auth_user` VALUES ('4', 'pbkdf2_sha256$10000$TOePgEXBwAzp$mI1MHs56z1J3JSwyraGHuo7cb4o1Vd5xA+jSV9XnDoQ=', '2016-11-28 04:24:07', '0', 'liyanjiuyuan', '', '', '', '0', '1', '2016-11-28 04:24:07');
@@ -275,7 +276,7 @@ CREATE TABLE `django_session` (
 -- ----------------------------
 -- Records of django_session
 -- ----------------------------
-INSERT INTO `django_session` VALUES ('zgmbpvmssnpaubz0hs0lboh0l9a8criv', 'YjgzMGZkZDlmODAwZjllNDlhMzM0NzU4MGQzMTVkMDc2OTFjZDM4Njp7IkxJU1RfUVVFUlkiOltbImF1dGgiLCJwZXJtaXNzaW9uIl0sIiJdLCJfYXV0aF91c2VyX2lkIjoxLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9', '2016-12-12 17:06:30');
+INSERT INTO `django_session` VALUES ('mzz2gz21qk3ocudzsxugq3vgy24ww4mf', 'YjE5YmE5NjI5N2M1ZDhiNmE0NmJhMGVjMGI5ZGU1Y2RhODQwM2M0Yzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2016-12-13 02:59:46');
 
 -- ----------------------------
 -- Table structure for django_site
@@ -422,7 +423,7 @@ CREATE TABLE `researchplatform_member` (
   KEY `team_id` (`team_id`),
   CONSTRAINT `researchplatform_member_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `researchplatform_team` (`id`),
   CONSTRAINT `user_id_refs_id_97e1109e` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of researchplatform_member
@@ -436,6 +437,7 @@ INSERT INTO `researchplatform_member` VALUES ('6', '杨副研究员', '杨瑞仪
 INSERT INTO `researchplatform_member` VALUES ('7', '张研究员', '张奉学研究员，安徽省人，1962年出生。广州中医药大学中西医结合基础专业博士生导师。热带医学研究所病毒学研究室主任，世界中医药学会联合会肝病专业委员会常务理事，广东省热带医学学会常务理事、副秘书长，是广东省“千百十人才工程”培养对象，中国科学院“西部之光”人才培养计划“联合学者”。《生物技术通讯》 理事，广州中医药大学学报 编委。\r\n1985年毕业于安徽中医学院，并获得学士学位，1991年获得广州中医药大学中西医结合基础专业硕士学位，2002年8月起广州中医药大学在职博士。2003年1月至2003年12月由国家科技部选派在日本长崎大学分子免疫遗传学系进修。2005年6月获得医学博士学位并获得香港求是科技基金会“求是优秀研究生奖”。\r\n长期从事病毒学研究和抗病毒药物的体内外活性研究开发与评价。作为主要成员完成国家自然科学基金三项，主持广东省自然科学基金项目3项，参与2项，主持广州市中药现代化重大专项1项；公开发表科研论文30余篇，SCI收录4篇。参编学术专著两部。负责核苷类抗乙型肝炎一类新药阿德福韦酯的药效学评价并于2003年7月获临床批文。另外，负责三个中药新药的主要药效学评价并已经通过省级鉴定。申请专利3项。\r\n近年主要在抗乙型肝炎病毒研究领域和美国Thomas Jefferson 大学的Dr. Mark Feitelson教授、中国科学院昆明植物研究所的陈纪军教授香港浸会大学徐敏博士等建立了稳定的研究伙伴关系，并同北京大学分子医学研究中心李刚教授在内啡肽类物质对SIV感染导致引起宿主细胞凋亡机制等领域进行了合作研究。\r\n开设并主讲《病毒学理论与技术》研究生课程一门，每学年30学时，教学效果良好。并编写研究生用教材一部。已独立招收硕士研究生8名并具体负责指导4名博士生学位论文实验。指导七年制学生参加“挑战杯”竞赛获得2003年省级二等奖。', '8', '1');
 INSERT INTO `researchplatform_member` VALUES ('8', '胡研究员', '胡英杰研究员，男，1962年生，祖籍湖南。广州中医药大学热带医学研究所副所长兼药学研究室主任，博士研究生导师，广东省新药审评专家库专家，广东省、广州市科技项目评审专家。1983年毕业于上海第一医学院药物化学专业（学士）；1988年毕业于中国科学院昆明植物研究所植物化学专业（硕士）；2005年毕业于广州中医药大学（博士）。1988年起在西南林学院任教植物化学、有机化学、药用植物资源开发利用学等课程，并从事多项国家级、部省级项目植物化学方面的研究；1996年起在广州中医药大学热带医学研究所从事药物活性中草药研究。研究领域涉及创新中药新药研发和中草药化学成分结构与药物活性研究，特别是治疗艾滋病中药与抗肿瘤活性天然产物研究。作为编委和副主编编写《植物化学》和《药用植物资源开发利用学》等2本高校教材。参加或主持国家级和省部级科研项目10项；在Phytochemistry、化学学报、中草药等药学类期刊发表论文30多篇，其中在SCI收录期刊8篇。获得发明专利授权3项。2002年和2005年获广东省科学技术奖二等奖各1项。', '9', '1');
 INSERT INTO `researchplatform_member` VALUES ('9', '黄副研究员', '黄玲，女，1963年11月生，江西省赣州市人，副研究员。主要研究方向：中药药理与毒理，中药对免疫性疾病的药效学和安全性评价及机制研究。\r\n2003年9月之前在广州中医药大学热带医学研究所工作，任药理毒理研究室副主任，主要从事抗疟疾、肝炎、艾滋病、自身免疫性疾病等的药效学和安全性评价。参与2个抗疟疾新药Artecom和Artekin的临床前研究，均已通过国家审批，其中Artekin的安全性评价为试验负责人，该药已获WHO推荐。现在《广州中医药大学学报》编辑部负责实验研究论文的编辑工作。\r\n在国家及省级杂志发表论文共26篇。主持厅局级课题3项，参与国家及省部级课题4项。\r\n已招收研究生人数：3人', '10', '1');
+INSERT INTO `researchplatform_member` VALUES ('10', '超级管理员', null, '1', null);
 
 -- ----------------------------
 -- Table structure for researchplatform_permission
