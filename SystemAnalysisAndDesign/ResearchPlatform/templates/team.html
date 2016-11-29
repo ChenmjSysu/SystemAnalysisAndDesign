@@ -1,8 +1,8 @@
 {% extends 'part/base.html' %}
 
 {% block head %}
-  <link href="../static/css/team.css" rel="stylesheet">
-  <script type="text/javascript" src='../static/js/team.js'></script>
+  <link href="/static/css/team.css" rel="stylesheet">
+  <script type="text/javascript" src='/static/js/team.js'></script>
 {% endblock %}
 
  
@@ -15,18 +15,18 @@
         <div class='left_nav nav1'>
           <div class='nav_head'>
             <div class='icon'></div>
-            <a class='nav_head_title' class='nav_li'>主要负责团队</a>
+            <a class='nav_head_title' class='nav_li' href="/team/{{mainTeam.id}}/">主要负责团队</a>
           </div>
-          <div class='nav_body'>{{mainTeam}}
-            {% for mamber in mainTeam.belong_team %}
-            <div class='nav_li' memberid='{{member.id}}'>{{member.name}}</div>
+          <div class='nav_body'>
+            {% for member in mainTeam.belong_team.all %}
+            <div class='nav_li'><a href="/member/{{member.id}}/">{{member.name}}</a></div>
             {% endfor %}
-            <div class='nav_li' id='nav_li0'>衣扬副教授</div>
+            <!-- <div class='nav_li' id='nav_li0'>衣扬副教授</div>
             <div class='nav_li' id='nav_li1'>陈铭津</div>
             <div class='nav_li' id='nav_li2'>陈福华</div>
             <div class='nav_li' id='nav_li3'>陈雅雪</div>
             <div class='nav_li' id='nav_li4'>孔方圆</div>
-            <div class='nav_li' id='nav_li5'>陈纪云</div>
+            <div class='nav_li' id='nav_li5'>陈纪云</div> -->
           </div>
         </div>
         <div class='left_nav nav2'>
@@ -53,15 +53,17 @@
         </div>
       </div>
       <div id='container_right'>
+        {% if team %}
         <div class='container_right'>
           <div class='part'>
-            <div class='part_title'>团队简介</div>
+            <!-- <div class='part_title'>团队简介</div>
             <div class='part_content'>
               <p> 2016年8月13-14日，由我院吴忠道教授牵头主持的2016年国家重点研发计划项目启动会在我校学人馆顺利召开。中山大学副校长颜光美教授、中山大学科学研究院副院长陶亮教授、范瑞泉副处长出席了开幕式，颜光美副校长在开幕式上致欢迎词。中国科学院院士赵国屏教授、“973”项目首席余新炳教授等9位专家应邀出席会议进行指导。项目组成员共60余人出席了会议。 </p>
               <img src="http://zssom.sysu.edu.cn/uploads/webwxgetmsgimg(1).jpg">
-            </div>
+            </div> -->
+            {{currentTeam.introduction|safe}}
           </div>
-          <div class='part'>
+          <!-- <div class='part'>
             <div class='part_title'>研究方向</div>
             <div class='part_content'>
               <p>医学媒介生物及其相关病原体的入侵可引起如登革热、寨卡病毒病、疟疾、锥虫病、血吸虫病、广州管圆线虫病等重要热带病的流行、疫情暴发与扩散，甚至成为重大公共卫生安全事件，会对人类健康和社会稳定构成极大威胁。</p>
@@ -73,11 +75,20 @@
             <div class='part_content'>
               <p> 预期将丰富我国重要热带病入侵媒介螺类(福寿螺、褐云玛瑙螺、双脐螺)和伊蚊(埃及伊蚊和白纹伊蚊)入侵、扩散和传病相关的生物学特性, 深化或进一步明确其传播疾病的潜能，获得一批创新性研究成果(包括高水平论文、专著、专利等), 从而为建立媒介生物及其病原体入侵、扩散和传播的快速侦查、风险评估及预警处置体系提供科学依据和技术支撑，进一步提升我国入侵媒介生物领域的研究水平，为有效防控媒介生物侵入对我国人类健康及公共卫生安全的威胁提供技术支撑。随着项目的开展，也将可能筛选到一批有关入侵媒介生物及输入性病原体具有识别意义的分子标志, 或具有防控价值的靶标, 为进一步的开发或转化研究奠定基础。同时，通过项目的实施，也将培养一批青年学术骨干和研究生，形成具有一定国际影响力的研究团队，为我国深入开展入侵生物的防制与相关研究储备人才，进一步提升项目参与单位学科建设水平，完善与侵入生物研究相关技术体系，对保障国家生物安全具有重要的战略意义。</p>
             </div>
-          </div>
+          </div> -->
           <div class='part'>
             <div class='part_title'>受本项目支持发表的文章</div>
             <div class='part_content'>
               <ul class="articlelist">
+                {% for article in currentTeam.publishArticles.all %}
+                <li>
+                  <article>
+                    <a href="{{article.link}}">{{article.title}}</a>
+                  </article>
+                </li>
+                {% endfor %}
+              </ul>
+              <!-- <ul class="articlelist">
                 <li>
                     <article>
                       <a href="/index.html?p=503" target="_blank">
@@ -109,12 +120,18 @@
                         国家重点研发计划将步入项目实施新阶段                  </a>
                     </article>
                   </li>         
-                </ul>
+                </ul> -->
             </div>
           </div>
         </div>
+        {% endif %}
+        {% if member %}
         <div class='container_right'>
           <div class='part'>
+            <div class='part_title'>{{currentMember.name}}简介</div>
+            {{currentMember.profile|safe}}
+          </div>
+          <!-- <div class='part'>
             <div class='part_title'>衣扬副教授简介</div>
             <div class='part_content'>
               <img style='float:right' src="../static/images/衣扬.png">
@@ -150,8 +167,9 @@
                 <li>2009年广东省教学成果一等奖；全方位实践取得的创新行IT人次培养模式（排名3）</li>
                 <li>2009年留学基金委：IBM奖教金获奖者</li>
               </ol>
-            </div>
+            </div> -->
           </div>
+        {% endif %}
 
         </div>
       </div>

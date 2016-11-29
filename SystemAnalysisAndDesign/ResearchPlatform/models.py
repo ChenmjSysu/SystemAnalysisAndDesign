@@ -17,7 +17,7 @@ class UserType(models.Model):
     permission = models.ForeignKey("Permission")
 
     def __unicode__(self):
-        return "%s is %s" % (self.user.username, self.type)
+        return "%s is %s" % (self.user.username, self.permission.type)
 
 
 class Permission(models.Model):
@@ -50,7 +50,7 @@ class Member(models.Model):
     name = models.CharField(u"姓名", max_length=20)
     profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
     user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
+    team = models.ForeignKey(Team, blank=True, null=True, related_name="belong_team")
 
     def toDict(self):
         temp = dict()
@@ -99,7 +99,7 @@ class BiologicalName(models.Model):
 
 class Project(models.Model):
     introduction = models.TextField(u"基本信息介绍")
-    biology = models.OneToOneField("BiologicalName")
+    biology = models.OneToOneField("BiologicalName", related_name = "project")
     database = models.TextField(u"相关数据库")
     publishArticles = models.ManyToManyField("Article", related_name="from_project")
     relatedArticles = models.ManyToManyField("Article", related_name="about_project")
@@ -130,6 +130,7 @@ class ProjectProgress(models.Model):
 
     def __unicode__(self):
         return self.project.biology.name
+        # return self.abstract
 
 
 class AcademicConference(models.Model):
@@ -142,6 +143,7 @@ class AcademicConference(models.Model):
         temp["name"] = self.name
         temp["detail"] = self.detail
         temp["year"] = self.year
+        temp["id"] = self.id
         return temp
 
     def __unicode__(self):
@@ -164,7 +166,7 @@ class Announcement(models.Model):
         a["id"] = self.id
         a["title"] = self.title
         a["contemt"] = self.content
-        a["editor"] = self.editor.member.name
+        a["editor"] = "self.editor.member.name"
         a["type"] = self.type
         a["readCount"] = self.readCount
         a["submittime"] = self.submittime.strftime("%Y-%m-%d %H:%M:%S")

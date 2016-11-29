@@ -33,26 +33,52 @@ def index(request):
 	notices = Announcement.objects.filter(type="Notice").order_by("submittime")[:3]
 	result["news"] = news
 	result["notices"] = notices
+	result["header"] = "header"
+	print RequestContext(request)
 	return render_to_response("index.html", result, context_instance=RequestContext(request))
 
-def Teams(request):
-	mainTeam = Team.objects.filter(isMain = True)
+def Teams(request, id="1"):
+	mainTeam = Team.objects.filter(isMain = True)[0]
+	currentTeam = Team.objects.get(id=int(id))
 	teams = Team.objects.filter(isMain = False)
 	print mainTeam
 	print teams
-	return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams}, context_instance=RequestContext(request))
+	return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams, "header": "team", "currentTeam": currentTeam, "team": True, "member": False}, context_instance=RequestContext(request))
 
-def Members(request, id):
+def Members(request, id="1"):
 	response_data = dict()
-	member = Member.objects.filter(id = int(id))
-	if len(member) == 0:
+	mainTeam = Team.objects.filter(isMain = True)[0]
+	teams = Team.objects.filter(isMain = False)
+	currentMember = Member.objects.filter(id = int(id))
+	if len(currentMember) == 0:
 		response_data["result"] = "fail"
 		response_data["message"] = "user type is not exist"
 		return HttpResponse(json.dumps(response_data), content_type = "application/json")
 	else:
+		currentMember = currentMember[0]
 		response_data["result"] = "success"
-		response_data["message"] = member.toDict()
-		return HttpResponse(json.dumps(response_data), content_type = "application/json")
+		response_data["message"] = currentMember.toDict()
+		# return HttpResponse(json.dumps(response_data), content_type = "application/json")
+		return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams, "header": "team", "currentMember": currentMember, "team": False, "member": True}, context_instance=RequestContext(request))
+
+
+def About(request, id="1"):
+	biologicalCategory = BiologicalCategory.objects.all()
+	biologicalName = BiologicalName.objects.get(id = int(id))
+	result = dict()
+	result["biologicalCategory"] = biologicalCategory
+	result["biologicalName"] = biologicalName
+	result["header"] = "about"
+	return render_to_response("about.html", result, context_instance=RequestContext(request))	
+
+def Progress(request, id="1"):
+	biologicalCategory = BiologicalCategory.objects.all()
+	biologicalName = BiologicalName.objects.get(id = int(id))
+	result = dict()
+	result["biologicalCategory"] = biologicalCategory
+	result["biologicalName"] = biologicalName
+	result["header"] = "progress"
+	return render_to_response("progress.html", result, context_instance=RequestContext(request))	
 
 # Login
 def login(request):
@@ -150,14 +176,14 @@ def register(request):
 			response_data["message"] = "input is not valid"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
 
-# About the Projects
-def AboutProject(request):
-	biologicalCategory = BiologicalCategory.objects.all()
+# # About the Projects
+# def AboutProject(request):
+# 	biologicalCategory = BiologicalCategory.objects.all()
 
 
-# The Progress of projects
-def ProjectProgress(request):
-	biologicalCategory = BiologicalCategory.objects.all()
+# # The Progress of projects
+# def ProjectProgress(request):
+# 	biologicalCategory = BiologicalCategory.objects.all()
 
 # Get a list of notices/news
 def List(request, type):
@@ -282,5 +308,27 @@ def Articles(request):
 	result = list()
 	for year in sorted(temp.keys(), reverse = True):
 		result.append({"year": year, "articles": temp[year]})
-	print result
-	return render_to_response("publishedArticles.html", {"result": result}, context_instance=RequestContext(request))
+	return render_to_response("publishedArticles.html", {"result": result, "header": "publishedArticles"}, context_instance=RequestContext(request))
+
+def Conference(request, id="1"):
+	conferences = AcademicConference.objects.all()
+	# result = list()
+	# yearSet = set()
+	# for conference in conferences:
+	# 	year = conference.year
+	# 	yearSet.add(year)
+	# for year in sorted(list(yearSet), reverse = True):
+	# 	result.append({"year": year, "conferences": AcademicConference.objects.filter(year = year).all()})
+	# print result
+
+	temp = dict()
+	for conference in conferences:
+		year = conference.year
+		if not temp.has_key(year):
+			temp[year] = list()
+		temp[year].append(conference.toDict())
+	result = list()
+	for year in sorted(temp.keys(), reverse = True):
+		result.append({"year": year, "conferences": temp[year]})
+	currentCon = AcademicConference.objects.get(id=id)
+	return render_to_response("conference.html", {"result": result, "header": "conference", "currentCon": currentCon}, context_instance=RequestContext(request))
