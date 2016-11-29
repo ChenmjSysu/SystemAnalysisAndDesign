@@ -1,0 +1,38 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="/static/css/publishedArticles.css" rel="stylesheet">
+  <script src="/static/js/manage.js"></script>
+  <style>
+    td {
+        text-align: left;
+    }
+    a {
+        cursor: pointer;
+    }
+  </style>
+{% endblock %}
+
+ 
+{% block title %}数据工具{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+        <table>
+            <tbody>
+                {% for term in news%}
+                <tr>
+                    <td><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></td><td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
+                </tr>
+                {% endfor %}      
+                {% for term in notice%}
+                <tr>
+                    <td>{{term.title}}</td><td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
+                </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+        
+    </div>
+{% endblock %}

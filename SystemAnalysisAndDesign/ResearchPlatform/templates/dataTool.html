@@ -1,0 +1,25 @@
+{% extends 'part/base.html' %}
+
+{% block head %}
+  <link href="../static/css/publishedArticles.css" rel="stylesheet">
+  <script type="text/javascript" src='../static/js/team.js'></script>
+{% endblock %}
+
+ 
+{% block title %}数据工具{% endblock %}
+
+{% block content %}
+    {%  include 'part/header.html' %}
+    <div id='container'>
+        <table style="width: 70%;margin:0 auto">
+            <tbody>
+                {% for dataTool in dataTools %}
+                <tr>
+                    <td class='short datatool'><span class='circle'></span>{{dataTool.name}}: <a target="blank" href="{{dataTool.link}}">{{dataTool.link}}</a></td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -37,3 +37,7 @@ ol{
 li{
 	margin-bottom:20px;
 }
+
+td.datatool {
+    text-align: left;
+}

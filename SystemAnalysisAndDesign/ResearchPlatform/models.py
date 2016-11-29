@@ -174,3 +174,10 @@ class Announcement(models.Model):
 
     def __unicode__(self):
         return "%s(%s)" % (self.title, self.type)
+
+class DataTool(models.Model):
+    name = models.CharField(u"名称", max_length=50)
+    link = models.CharField(u"链接", max_length=200)
+
+    def __unicode__(self):
+        return self.name

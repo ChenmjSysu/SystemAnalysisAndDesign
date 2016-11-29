@@ -224,7 +224,7 @@ def Detail(request, type, id):
 def Add(request, type):
 	response_data = {}	
 	if request.user.is_authenticated():
-		if Permission.objects.get(type = request.user.type.type).write == False:
+		if Permission.objects.get(type = request.user.type.permission.type).write == False:
 			response_data["result"] = "fail"
 			response_data["message"] = "permission denied"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
@@ -252,7 +252,7 @@ def Delete(request, type):
 	response_data = {}
 	login(request)
 	if request.user.is_authenticated():
-		if Permission.objects.get(type = request.user.type.type).write == False:
+		if Permission.objects.get(type = request.user.type.permission.type).write == False:
 			response_data["result"] = "fail"
 			response_data["message"] = "permission denied"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")
@@ -264,7 +264,7 @@ def Delete(request, type):
 				response_data["message"] = "%s with id %s is not found" % (type, aid)
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			else:
-				announcement.delete()
+				# announcement.delete()
 				response_data["result"] = "success"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 		else:
@@ -332,3 +332,13 @@ def Conference(request, id="1"):
 		result.append({"year": year, "conferences": temp[year]})
 	currentCon = AcademicConference.objects.get(id=id)
 	return render_to_response("conference.html", {"result": result, "header": "conference", "currentCon": currentCon}, context_instance=RequestContext(request))
+
+def DataTools(request):
+	dataTools = DataTool.objects.all()
+	return render_to_response("dataTool.html", {"dataTools": dataTools}, context_instance=RequestContext(request))
+
+def Manage(request):
+	result = dict()
+	result["news"] = Announcement.objects.filter(type="News")
+	result["notice"] = Announcement.objects.filter(type="Notice")
+	return render_to_response("manage.html", result, context_instance=RequestContext(request))

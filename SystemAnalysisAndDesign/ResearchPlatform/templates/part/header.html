@@ -24,22 +24,22 @@
                 {% if user.type.permission.type == 'SU' %}
                   <div class='username'>{{user.username}}<a href='/logout/' class='logoff_right'>退出</a></div>
                 {% elif user.type.permission.type == 'Lab' %}
-                  <div class='username'>陈实验室</div>
+                  <div class='username'>{{user.username}}</div>
                   <div class='top_drop'>
                     <!-- <a href="/">发表文章</a>
                     <a href="/">修改项目进展</a> -->
                     <a href="/logout/">退出</a>
                   </div>
                 {% elif user.type.permission.type == 'Ma' %}
-                  <div class='username'>陈管理员{{type}}</div>
+                  <div class='username'>{{user.username}}</div>
                   <div class='top_drop'>
                     <a href="/addNews">发布新闻</a>
                     <a href="/">发布公告</a>
-                    <a href="/">管理文章</a>
+                    <a href="/manage/">管理文章</a>
                     <a href="/logout/">退出</a>
                   </div>
                 {% elif user.type.permission.type == 'Co' %}
-                  <div class='username'>陈普通{{type}}</div>
+                  <div class='username'>{{user.username}}</div>
                   <div class='top_drop'>
                     <a href="/logout/">退出</a>
                   </div>

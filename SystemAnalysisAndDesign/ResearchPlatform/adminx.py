@@ -34,6 +34,9 @@ class ProjectAdmin(object):
 class ProjectProgressAdmin(object):
 	pass
 
+class DataToolAdmin(object):
+	pass
+
 site.register(UserType, UserTypeAdmin)
 site.register(Permission, PermissionAdmin)
 site.register(Announcement, AnnouncementAdmin)
@@ -45,3 +48,4 @@ site.register(BiologicalCategory, BiologicalCategoryAdmin)
 site.register(BiologicalName, BiologicalNameAdmin)
 site.register(Project, ProjectAdmin)
 site.register(ProjectProgress, ProjectProgressAdmin)
+site.register(DataTool, DataToolAdmin)
