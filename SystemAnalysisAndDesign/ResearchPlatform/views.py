@@ -29,8 +29,8 @@ def form(request):
 
 def index(request):
 	result = dict()
-	news = Announcement.objects.filter(type="News").order_by("submittime")[:3]
-	notices = Announcement.objects.filter(type="Notice").order_by("submittime")[:3]
+	news = Announcement.objects.filter(type="News").order_by("-submittime")[:3]
+	notices = Announcement.objects.filter(type="Notice").order_by("-submittime")[:3]
 	result["news"] = news
 	result["notices"] = notices
 	result["header"] = "header"
@@ -187,7 +187,7 @@ def register(request):
 
 # Get a list of notices/news
 def List(request, type):
-	announcements = Announcement.objects.filter(type = type).order_by("submittime")
+	announcements = Announcement.objects.filter(type = type).order_by("-submittime")
 	count = announcements.count()	
 	countPerPage = int(request.GET.get("countPerPage", 10))
 	pageCount = count / countPerPage
@@ -235,9 +235,9 @@ def Add(request, type):
 			title = request.POST.get("title", None)
 			announcement = Announcement.objects.create(title = title, content = content, editor = request.user, type = type)
 			announcement.save()
-			if content is None or title is None:
+			if content is None or title is None or content == "" or title == "":
 				response_data["result"] = "fail"
-				response_data["message"] = "content or title can not be null"
+				response_data["message"] = "content or title can not be null or empty"
 				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			response_data["result"] = "success"
 			return HttpResponse(json.dumps(response_data), content_type = "application/json")

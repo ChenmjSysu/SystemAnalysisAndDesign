@@ -23,7 +23,8 @@
             <tbody>
                 {% for term in news%}
                 <tr>
-                    <td><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></td><td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
+                    <td><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></td>
+                    <td><button class="term" recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</button></td>
                 </tr>
                 {% endfor %}      
                 {% for term in notice%}
