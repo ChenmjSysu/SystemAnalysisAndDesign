@@ -29,22 +29,6 @@ class Permission(models.Model):
         return "permission of %s" % self.type
 
 
-class Member(models.Model):
-    name = models.CharField(u"姓名", max_length=20)
-    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
-    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
-    team = models.OneToOneField("Team", blank=True, null=True, related_name="belong_team")
-
-    def toDict(self):
-        temp = dict()
-        temp["name"] = self.name
-        temp["profile"] = self.profile
-        return temp
-
-    def __unicode__(self):
-        return self.name
-
-
 class Team(models.Model):
     name = models.CharField(u"名称", max_length=10)
     isMain = models.BooleanField(u"是否主要团队", default=False)
@@ -56,6 +40,22 @@ class Team(models.Model):
         temp["name"] = self.name
         temp["isMain"] = self.isMain
         temp["introduction"] = self.introduction
+        return temp
+
+    def __unicode__(self):
+        return self.name
+
+
+class Member(models.Model):
+    name = models.CharField(u"姓名", max_length=20)
+    profile = models.TextField(u"简介", blank=True, null=True)  # 研究方向/研究成果
+    user = models.OneToOneField(User, blank=True, null=True, related_name="member")
+    team = models.OneToOneField(Team, blank=True, null=True, related_name="belong_team")
+
+    def toDict(self):
+        temp = dict()
+        temp["name"] = self.name
+        temp["profile"] = self.profile
         return temp
 
     def __unicode__(self):
@@ -108,7 +108,7 @@ class Project(models.Model):
     def toDict(self):
         temp = dict()
         temp["introduction"] = self.introduction
-        temp["biologyname"]  = self.biology.name
+        temp["biologyname"] = self.biology.name
         temp["database"] = self.database
         temp["progress"] = dict()
         temp["progress"]["abstract"] = self.progress.abstract
@@ -152,9 +152,9 @@ class Announcement(models.Model):
     title = models.CharField(u"标题", max_length=50)
     content = models.TextField(u"内容")
     editor = models.ForeignKey(User, related_name="notices")
-    type = models.CharField(u"类型", choices=((u"0", u"News"), (u"1", u"Notice")), max_length=10)
+    type = models.CharField(u"类型", choices=((u"News", u"News"), (u"Notice", u"Notice")), max_length=10)
     readCount = models.IntegerField(u"阅读数量", default=0)
-    status = models.CharField(u"状态", choices=((u"C", u"Checking"), (u"P", u"Passed")), max_length=10,
+    status = models.CharField(u"状态", choices=((u"Checking", u"Checking"), (u"Passed", u"Passed")), max_length=10,
                               default="Checking")
     submittime = models.DateTimeField(u"提交时间", auto_now_add=True)
     passtime = models.DateTimeField(u"通过时间", blank=True, null=True)
