@@ -23,19 +23,20 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns("ResearchPlatform.views",
-	url(r'^index/$', TemplateView.as_view(template_name="index.html")),
+	url(r'^index/$', "index"),
 	url(r'^login/$', "login"),
 	url(r'^register/$', "register"),
     url(r'^about/$', TemplateView.as_view(template_name="about.html")),
-    url(r'^team/$', TemplateView.as_view(template_name="team.html")),
+    url(r'^team/$', "Teams"),
     url(r'^progress/$', TemplateView.as_view(template_name="progress.html")),
-    url(r'^publishedArticles/$', TemplateView.as_view(template_name="publishedArticles.html")),
+    url(r'^publishedArticles/$', "Articles"),
     url(r'^conference/$', TemplateView.as_view(template_name="conference.html")),
     url(r'^addNews/$', TemplateView.as_view(template_name="addNews.html")),
     url(r'^add/(\w+)', "Add"),
     url(r'^list/(\w+)', "List"),
     url(r'^delete/(\w+)', "Delete"),
     url(r'^(\w+)/(\d+)/', "Detail"),    
+    url(r'^mamber/(\d+)/', "Members"),    
     url(r'^form/$', "form"),
 )
 

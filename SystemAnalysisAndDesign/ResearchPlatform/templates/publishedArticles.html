@@ -13,6 +13,19 @@
     <div id='container'>
     	<table>
     		<tbody>
+                {% for term in result %}
+                <tr>
+                    <td class='short'><span class='circle'></span>{{term.year}}</td>
+                    <td class='long'>
+                        <ol>
+                            {% for article in term.articles %}
+                            <li><a target="blank" href="{{article.link}}" >{{article.editor}}. {{article.title}}</a></li>
+                            {% endfor %}                            
+                        </ol>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
     			<tr>
     				<td class='short'><span class='circle'></span>2011年</td>
     				<td class='long'>

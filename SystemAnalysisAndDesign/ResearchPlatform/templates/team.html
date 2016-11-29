@@ -17,7 +17,10 @@
             <div class='icon'></div>
             <a class='nav_head_title' class='nav_li'>主要负责团队</a>
           </div>
-          <div class='nav_body'>
+          <div class='nav_body'>{{mainTeam}}
+            {% for mamber in mainTeam.belong_team %}
+            <div class='nav_li' memberid='{{member.id}}'>{{member.name}}</div>
+            {% endfor %}
             <div class='nav_li' id='nav_li0'>衣扬副教授</div>
             <div class='nav_li' id='nav_li1'>陈铭津</div>
             <div class='nav_li' id='nav_li2'>陈福华</div>

@@ -16,10 +16,16 @@ class MemberAdmin(object):
 class TeamAdmin(object):
 	pass
 
+class ArticleAdmin(object):
+	pass
+
+class AcademicConferenceAdmin(object):
+	pass
 
 site.register(UserType, UserTypeAdmin)
 site.register(Permission, PermissionAdmin)
 site.register(Announcement, AnnouncementAdmin)
 site.register(Member, MemberAdmin)
 site.register(Team, TeamAdmin)
-
+site.register(Article, ArticleAdmin)
+site.register(AcademicConference, AcademicConferenceAdmin)

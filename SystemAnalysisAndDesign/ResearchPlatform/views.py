@@ -27,6 +27,33 @@ def form(request):
 
 	return render_to_response("form.html", context_instance=RequestContext(request))
 
+def index(request):
+	result = dict()
+	news = Announcement.objects.filter(type=0).order_by("submittime")[:3]
+	notices = Announcement.objects.filter(type=1).order_by("submittime")[:3]
+	result["news"] = news
+	result["notices"] = notices
+	return render_to_response("index.html", result, context_instance=RequestContext(request))
+
+def Teams(request):
+	mainTeam = Team.objects.filter(isMain = True)
+	teams = Team.objects.filter(isMain = False)
+	print mainTeam
+	print teams
+	return render_to_response("team.html", {"mainTeam": mainTeam, "teams": teams}, context_instance=RequestContext(request))
+
+def Member(request, id):
+	response_data = dict()
+	member = Member.objects.filter(id = int(id))
+	if len(member) == 0:
+		response_data["result"] = "fail"
+		response_data["message"] = "user type is not exist"
+		return HttpResponse(json.dumps(response_data), content_type = "application/json")
+	else:
+		response_data["result"] = "success"
+		response_data["message"] = member.toDict()
+		return HttpResponse(json.dumps(response_data), content_type = "application/json")
+
 # Login
 def login(request):
 	if request.method == "GET":
@@ -127,9 +154,6 @@ def register(request):
 def AboutProject(request):
 	biologicalCategory = BiologicalCategory.objects.all()
 
-# Team
-def Team(request):
-	team = Team.objects.all()
 
 # The Progress of projects
 def ProjectProgress(request):
@@ -167,7 +191,7 @@ def Detail(request, type, id):
 	else:
 		response_data["result"] = "fail"
 		response_data["message"] = "an error id"
-		return HttpResponse(json.dumps(respons_data), content_type = "application/json")
+		return HttpResponse(json.dumps(response_data), content_type = "application/json")
 
 # Add a notice/news
 def Add(request, type):
@@ -246,3 +270,16 @@ def Delete(request, type):
 # 		return HttpResponse("Login first")
 
 
+def Articles(request):
+	articles = Article.objects.all()
+	temp = dict()
+	for article in articles:
+		year = article.year
+		if not temp.has_key(year):
+			temp[year] = list()
+		temp[year].append(article.toDict())
+	result = list()
+	for year in sorted(temp.keys(), reverse = True):
+		result.append({"year": year, "articles": temp[year]})
+	print result
+	return render_to_response("publishedArticles.html", {"result": result}, context_instance=RequestContext(request))
