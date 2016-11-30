@@ -1,4 +1,2 @@
 *.pyc
-.idea/dbnavigator.xml
-.idea/dictionaries/
-.idea/encodings.xml
+.idea/
