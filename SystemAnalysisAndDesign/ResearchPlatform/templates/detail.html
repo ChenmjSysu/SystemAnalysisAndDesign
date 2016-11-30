@@ -12,15 +12,14 @@
     {%  include 'part/header.html' %}
     <div id='container'>
     	<div class='head'>
-    		<h2>文章标题</h2>
+    		<h2>{{announcement.title}}</h2>
     		<div class='infos'>
-    			<span>作者：纪云</span>
-    			<span>发表时间：2016-11-29 15:01:41</span>
+    			<span>作者：{{announcement.editor.username}}</span>
+    			<span>发表时间：{{announcement.submittime|date:"Y-m-d"}}</span>
     		</div>
     	</div>
     	<div class='content'>
-    		<p>这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容</p>
-    		<p>这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容</p>
+    		{{announcement.content|safe}}
     	</div>
     </div>
 {% endblock %}

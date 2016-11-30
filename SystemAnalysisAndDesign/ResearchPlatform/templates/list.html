@@ -11,9 +11,23 @@
 {% block content %}
     {%  include 'part/header.html' %}
     <div id='container'>
-    	<div class='listType'>新闻动态</div>
+    	<div class='listType'>
+            {% if type == "News" %}
+            新闻动态
+            {% elif type == "Notice" %}
+            通知公告
+            {% endif %}
+        </div>
     	<div class='list'>
-    		<a class='li' href='/showDetail'>
+            {% for term in announcements %}
+            <a class='li' href='/showDetail/{{term.id}}/'>
+                <div class='icon'></div>
+                <div class='title'>{{term.title}}</div>
+                <div class='author'>{{term.editor.username}}</div>
+                <div class='date'>{{term.submittime|date:"Y-m-d"}}</div>
+            </a>
+            {% endfor %}
+    		<!-- <a class='li' href='/showDetail'>
     			<div class='icon'></div>
     			<div class='title'>【我是文章标题啊】</div>
     			<div class='author'>纪云</div>
@@ -36,7 +50,7 @@
     			<div class='title'>【我是文章标题啊】</div>
     			<div class='author'>纪云</div>
     			<div class='date'>2016-11-29 15:01:41</div>
-    		</a>
+    		</a> -->
     	</div>
     </div>
   <script type="text/javascript" src='../static/js/list.js'></script>

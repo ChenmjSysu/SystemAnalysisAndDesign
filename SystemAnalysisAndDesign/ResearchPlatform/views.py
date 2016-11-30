@@ -36,6 +36,10 @@ def index(request):
 	result["header"] = "header"
 	return render_to_response("index.html", result, context_instance=RequestContext(request))
 
+def Analysis(request):
+	result = {"header": "analysis"}
+	return render_to_response("analysis.html", result, context_instance=RequestContext(request))
+
 def Teams(request, id="1"):
 	mainTeam = Team.objects.filter(isMain = True)[0]
 	currentTeam = Team.objects.get(id=int(id))
@@ -203,6 +207,10 @@ def List(request, type):
 	
 	return HttpResponse(json.dumps(response_data), content_type = "application/json")
 
+def ShowList(request, type):
+	announcements = Announcement.objects.filter(type = type).order_by("-submittime")
+	return render_to_response("list.html", {"announcements": announcements, "type": type}, context_instance=RequestContext(request))
+
 # Get a notice/news according to ID
 def Detail(request, type, id):
 	response_data = {}
@@ -218,6 +226,11 @@ def Detail(request, type, id):
 		response_data["result"] = "fail"
 		response_data["message"] = "an error id"
 		return HttpResponse(json.dumps(response_data), content_type = "application/json")
+
+def ShowDetail(request, id):
+	announcement = Announcement.objects.get(id=id)
+	type = announcement.type
+	return render_to_response("detail.html", {"announcement": announcement, "type": type}, context_instance=RequestContext(request))
 
 # Add a notice/news
 def Add(request, type):
@@ -334,7 +347,7 @@ def Conference(request, id="1"):
 
 def DataTools(request):
 	dataTools = DataTool.objects.all()
-	return render_to_response("dataTool.html", {"dataTools": dataTools}, context_instance=RequestContext(request))
+	return render_to_response("dataTool.html", {"dataTools": dataTools, "header": "tools"}, context_instance=RequestContext(request))
 
 def Manage(request):
 	result = dict()
