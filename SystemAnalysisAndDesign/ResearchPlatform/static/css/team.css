@@ -4,12 +4,13 @@
     text-align: center;
 }
 #container_left{
-    min-height: 600px;
+    min-height: 400px; 
     width: 200px;
     display: inline-block;
     border: solid 1px #218868;
     border-top: none;
     line-height: 35px;
+    padding-bottom: 30px;
 }
 #container_right{
 	height:auto;
