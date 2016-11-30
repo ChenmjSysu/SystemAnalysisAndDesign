@@ -155,13 +155,13 @@ def register(request):
 			user.set_password(password1)
 			user.email = email
 			user.save()						
-			userType = UserType.objects.create(user = user, type = usertype, permission = permission[0])
+			userType = UserType.objects.create(user = user, permission = permission[0])
 			userType.save()
 			#login after registering
 			newUser = auth.authenticate(username = username, password = password1)
 			if newUser is not None:
 				auth.login(request, newUser)
-				return render_to_response("")
+				return HttpResponse(json.dumps(response_data), content_type = "application/json")
 			else:
 				try:
 					user = User.objects.get(username = username)
