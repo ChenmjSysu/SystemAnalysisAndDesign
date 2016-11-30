@@ -49,6 +49,9 @@
     padding: 0 50px;
     cursor:pointer;
 }
+p {
+    margin: 0;
+}
 h3.article_title {
     color: #054719;
     border-bottom: dashed 1px gray;

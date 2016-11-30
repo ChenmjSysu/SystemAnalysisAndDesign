@@ -8,8 +8,10 @@
 </head>
 
 <body>    
-	<script id="editor" type="text/plain" style="width:500px;height:300px;"><h1>文本放在这里可以初始化编辑器的内容</h1></script>
-	<button id="submit">获得内容</button>
+    <div id='content' style="float: right;margin: 20px;width: 772px;"></div>
+	<script id="editor" type="text/plain" style="width: 500px;height:300px;display: inline-block;"><h1>文本放在这里可以初始化编辑器的内容</h1></script>
+	<button id="submit" onclick='getContent()'>获得内容</button>
+    
 </body>
 
 
@@ -24,6 +26,9 @@
         arr.push("使用editor.getContent()方法可以获得编辑器的内容");
         arr.push("内容为：");
         arr.push(UE.getEditor('editor').getContent());
-        alert(arr.join("\n"));
+        // alert(arr.join("\n"));
+        document.getElementById('content').innerText = arr.join("\n");
+        window.scrollTo(0,0);
     }
+
 </script>
