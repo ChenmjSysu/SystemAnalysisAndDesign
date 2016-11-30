@@ -13,7 +13,7 @@
     <div id='container'>
     	<div id='container_left'>
             {% for category in biologicalCategory %}
-            <div class='left_nav'>
+            <div class='left_nav nav{{ forloop.counter }}'>
                 <div class='nav_head'>
                     <div class='icon'></div>
                     <div class='nav_head_title'>{{category.name}}</div>
