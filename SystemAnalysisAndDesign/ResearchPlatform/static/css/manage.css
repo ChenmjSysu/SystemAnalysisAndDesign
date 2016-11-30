@@ -10,6 +10,7 @@
     text-indent: 10px;
     color: green;
     font-weight: bold;
+    text-align: left;
 }
 .list{
 	margin: 30px 0 60px 0;
@@ -22,7 +23,19 @@
 	line-height: 40px;
 	position: relative;
 }
-
+.list .li .author,.list .li .time{
+    color:gray;
+    font-size: 12px;
+    display:inline-block;
+    margin:0 10px;
+}
+.list .li .author {
+    background: #ededed;
+    color: white;
+    padding: 0 7px;
+    line-height: 24px;
+    border-radius: 5px;
+}
 .list .li:hover{
 	color: green;
 	background: rgba(0,128,0,0.1);

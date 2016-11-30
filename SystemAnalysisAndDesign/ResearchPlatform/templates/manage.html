@@ -15,13 +15,24 @@
         <div class='list'>
             {% for term in news%}
                 <div class='li'>
-                    <div class='title'><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></div>
+                    <div class='title'>
+                        <a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a>
+                        <span class='author'>陈纪云</span>
+                        <span class='time'>2016 11 30 9:49</span>
+                    </div>
                     <div class='btn'>删除</div>
                 </div>
                 {% endfor %}      
+        </div>
+        <div class='listType'>通知公告</div>
+        <div class='list'>
                 {% for term in notice%}
                 <div class='li'>
-                    <div class='title'><a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a></div>
+                    <div class='title'>
+                        <a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a>
+                        <span class='author'>陈纪云</span>
+                        <span class='time'>2016 11 30 9:49</span>
+                    </div>
                     <div class='btn'>删除</div>
                 </div>
             {% endfor %}    
