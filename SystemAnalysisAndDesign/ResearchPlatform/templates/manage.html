@@ -16,11 +16,11 @@
             {% for term in news%}
                 <div class='li'>
                     <div class='title'>
-                        <a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a>
-                        <span class='author'>陈纪云</span>
-                        <span class='time'>2016 11 30 9:49</span>
+                        <a href="/showDetail/{{term.id}}/">{{term.title}}</a>
+                        <span class='author'>{{term.editor.username}}</span>
+                        <span class='time'>{{term.submittime|date:"Y-m-d"}}</span>
                     </div>
-                    <div class='btn'>删除</div>
+                    <div class='btn term' recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</div>
                 </div>
                 {% endfor %}      
         </div>
@@ -29,11 +29,11 @@
                 {% for term in notice%}
                 <div class='li'>
                     <div class='title'>
-                        <a href="/{{term.type}}/{{term.id}}/">{{term.title}}</a>
-                        <span class='author'>陈纪云</span>
-                        <span class='time'>2016 11 30 9:49</span>
+                        <a href="/showDetail/{{term.id}}/">{{term.title}}</a>
+                        <span class='author'>{{term.editor.username}}</span>
+                        <span class='time'>{{term.submittime|date:"Y-m-d"}}</span>
                     </div>
-                    <div class='btn'>删除</div>
+                    <div class='btn term' recordId="{{term.id}}" type="{{term.type}}" title="{{term.title}}">删除</div>
                 </div>
             {% endfor %}    
         </div>
