@@ -37,14 +37,15 @@
     display: block;
     padding: 0 50px;
 }
-#container_left .nav_body a.active{
-	background: #218868;
-    color: white;
+#container_left .nav_body a.active,#container_left .nav_body a:hover{
+    background: #dee7d6;
+    color: #006600;
 }
 #container_left .nav_head_title {
-    color: #054719;
+    color: white;
     font-weight: bold;
     padding: 0 50px;
+    background: #054719;
 }
 .part{
 	border-bottom: solid 1px #218868;
