@@ -4,22 +4,28 @@
     text-align: center;
 }
 #container_left{
-    height: 600px;
     width: 200px;
     display: inline-block;
     border: solid 1px #218868;
     border-top: none;
     line-height: 35px;
+    padding-bottom: 30px;
 }
 #container_right{
-	height:auto;
 	width:880px;
 	display:inline-block;
 	border: solid 1px #218868;
 	vertical-align: top;
 	padding:10px 20px 40px 20px;
 	margin-left: 30px;
+    height: 405px;
+    overflow-y: auto;
 }
+#container_right::-webkit-scrollbar{width:5px;}
+#container_right::-webkit-scrollbar-track{background-color:#6fbf73;}
+#container_right::-webkit-scrollbar-thumb{background-color:#005825;}
+#container_right::-webkit-scrollbar-thumb:hover {background-color:#054719}
+#container_right::-webkit-scrollbar-thumb:active {background-color:#054719}
 #container_left .left_nav {
     border-top: solid 1px #218868;
     position:relative;
